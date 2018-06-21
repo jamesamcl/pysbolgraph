@@ -5,7 +5,7 @@ from rdflib.namespace import RDF
 
 from terms import SBOL2
 
-from S2ComponentDefinition import S2ComponentDefinition
+from S2Component import S2Component, S2ComponentDefinition
 
 class SBOL2Graph:
     def __init__(self):
