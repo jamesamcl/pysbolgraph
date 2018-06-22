@@ -1,4 +1,6 @@
 import rdflib
+import requests
+import json
 
 from rdflib import URIRef
 
@@ -126,3 +128,27 @@ class SBOL2Graph:
 
     def serialize_xml(self):
         return serialize_sboll2(self)
+
+    @staticmethod
+    def validate_xml(xml):
+        # See API docs at http://synbiodex.github.io/SBOL-Validator/#introduction
+        request = {'options': {'language': 'GenBank',
+                               'test_equality': False,
+                               'check_uri_compliance': False,
+                               'check_completeness': False,
+                               'check_best_practices': False,
+                               'fail_on_first_error': False,
+                               'provide_detailed_stack_trace': False,
+                               'subset_uri': '',
+                               'uri_prefix': '',
+                               'version': '',
+                               'insert_type': False,
+                               'main_file_name': 'main file',
+                               'diff_file_name': 'comparison file',
+                               },
+                   'return_file': True,
+                   'main_file': xml
+                   }
+
+        resp = requests.post("http://www.async.ece.utah.edu/validate/", json=request)
+        return json.dumps(resp.json())

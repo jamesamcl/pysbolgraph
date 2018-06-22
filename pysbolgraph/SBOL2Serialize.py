@@ -68,7 +68,7 @@ def serialize_sboll2(g):
             element = subject_to_element[subject]
             doc.append(element)
 
-    print(tostring(doc, pretty_print=True))
+    return tostring(doc, pretty_print=True)
 
 
 def prefixify(iri, prefixes, create_new):
