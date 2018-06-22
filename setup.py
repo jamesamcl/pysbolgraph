@@ -15,5 +15,5 @@ setup(name='pysbolgraph',
 
       packages=['pysbolgraph'],
       
-      requires=['rdflib']
+      install_requires=['rdflib']
       )
