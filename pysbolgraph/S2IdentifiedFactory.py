@@ -8,6 +8,9 @@ import CompliantURIs
 
 class S2IdentifiedFactory:
     
+    def __init__(self):
+        pass
+
     @staticmethod
     def createTopLevel(graph, theType, uriPrefix, displayId, name=None, version="1"):
 
