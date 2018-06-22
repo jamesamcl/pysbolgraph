@@ -49,6 +49,7 @@ class S2ComponentDefinition(S2Identified):
         sc = S2SequenceConstraint(self.g, identified.uri)
         sc.subject = a
         sc.object = b
+        self.insertUriProperty(SBOL2.sequenceConstraint, sc.uri)
         return sc
 
 

@@ -47,7 +47,7 @@ CRa_U6_seq_elements = "GGTTTACCGAGCTCTTATTGGTTTTCAAACTTCATTGACTGTGCC" + \
 "AGAGCTATGCTGGAAACAGCAGAAATAGCAAGTTTAAATAAGGCT" + \
 "AGTCCGTTATCAACTTGAAAAAGTGGCACCGAGTCGGTGCTTTTT" + \
 "TTGGTGCGTTTTTATGCTTGTAGTATTGTATAATGTTTTT"
-g.createSequence("CRa_U6_seq", CRa_U6_seq_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
+g.createSequence(uriPrefix, "CRa_U6_seq", CRa_U6_seq_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 		
 # Create Sequence for gRNA_b coding sequence
 gRNA_b_elements = "AAGGTCGGGCAGGAAGAGGGCCTATTTCCCATGATTCCTTCATAT" + \
@@ -59,7 +59,7 @@ gRNA_b_elements = "AAGGTCGGGCAGGAAGAGGGCCTATTTCCCATGATTCCTTCATAT" + \
 "CATCAGGAACATGTGTTTAAGAGCTATGCTGGAAACAGCAGAAAT" + \
 "AGCAAGTTTAAATAAGGCTAGTCCGTTATCAACTTGAAAAAGTGG" + \
 "CACCGAGTCGGTGCTTTTTTT"
-g.createSequence("gRNA_b_seq", gRNA_b_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
+g.createSequence(uriPrefix, "gRNA_b_seq", gRNA_b_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 		
 # Create Sequence for mKate
 mKate_seq_elements = "TCTAAGGGCGAAGAGCTGATTAAGGAGAACATGCACATGAAGCTG" + \
@@ -81,7 +81,7 @@ mKate_seq_elements = "TCTAAGGGCGAAGAGCTGATTAAGGAGAACATGCACATGAAGCTG" + \
 "GTCTACTATGTGGACAGAAGACTGGAAAGAATCAAGGAGGCCGAC" + \
 "AAAGAGACCTACGTCGAGCAGCACGAGGTGGCTGTGGCCAGATAC" + \
 "TGCG"
-g.createSequence("mKate_seq", mKate_seq_elements,  "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
+g.createSequence(uriPrefix, "mKate_seq", mKate_seq_elements,  "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 
 # Create Sequence for CRP_b promoter
 CRP_b_seq_elements =  "GCTCCGAATTTCTCGACAGATCTCATGTGATTACGCCAAGCTACG" + \
@@ -91,7 +91,7 @@ CRP_b_seq_elements =  "GCTCCGAATTTCTCGACAGATCTCATGTGATTACGCCAAGCTACG" + \
 "TCTAGGCGTGTACGGTGGGAGGCCTATATAAGCAGAGCTCGTTTA" + \
 "GTGAACCGTCAGATCGCCTCGAGTACCTCATCAGGAACATGTTGG" + \
 "ATCCAATTCGACC"
-g.createSequence("CRP_b_seq", CRP_b_seq_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
+g.createSequence(uriPrefix, "CRP_b_seq", CRP_b_seq_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 
 
 CRP_b = g.createComponentDefinition(uriPrefix, "CRP_b", Biopax.DnaRegion)
@@ -115,12 +115,7 @@ Template_Module.createMapsTo("cas9m_BFP_gRNA_map", SBOL2.useLocal, "cas9m_BFP_gR
 Template_Module.createMapsTo("EYFP_map", SBOL2.useLocal, "EYFP", "target")
 Template_Module.createMapsTo("EYFP_gene_map", SBOL2.useLocal, "EYFP_gene", "target_gene")
 
-
-
-for s,p,o in g.g.triples((None, None, None)):
-    print s,p,o
-
-
+g.serializeXML()
 
 
 

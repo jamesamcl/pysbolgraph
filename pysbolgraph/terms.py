@@ -39,6 +39,11 @@ SBOL2 = ClosedNamespace(
         "definition",
         "direction",
         "refinement",
+        "sequenceConstraint",
+        "functionalComponent",
+        "module",
+        "participation",
+        "encoding",
         
         # terms
         "precedes",

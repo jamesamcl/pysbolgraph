@@ -32,6 +32,7 @@ class S2ModuleDefinition(S2Identified):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Interaction, self, displayId)
         interaction = S2Interaction(self.g, identified.uri)
         interaction.type = theType
+        self.insertUriProperty(SBOL2.interaction, interaction.uri)
         return interaction
 
     def createFunctionalComponent(self, displayId, access, definition, direction):
@@ -40,14 +41,15 @@ class S2ModuleDefinition(S2Identified):
         fc.access = access
         fc.definition = definition
         fc.direction = direction
+        self.insertUriProperty(SBOL2.functionalComponent, fc.uri)
         return fc
 
     def createModule(self, displayId, definition):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Module, self, displayId)
         new_module = S2Module(self.g, identified.uri)
         new_module.definition = definition
+        self.insertUriProperty(SBOL2.module, new_module.uri)
         return new_module
-
 
 class S2Module(S2Identified):
     def __init__(self, g, uri):
@@ -63,11 +65,12 @@ class S2Module(S2Identified):
     
     def createMapsTo(self, displayId, refinement, local, remote):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.MapsTo, self, displayId)
-        fc = S2MapsTo(self.g, identified.uri)
-        fc.local = local
-        fc.remote = remote
-        fc.refinement = refinement
-        return fc
+        mapsTo = S2MapsTo(self.g, identified.uri)
+        mapsTo.local = local
+        mapsTo.remote = remote
+        mapsTo.refinement = refinement
+        self.insertUriProperty(SBOL2.mapsTo, mapsTo.uri)
+        return mapsTo
     
 
 

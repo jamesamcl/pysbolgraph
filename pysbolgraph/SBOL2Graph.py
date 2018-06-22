@@ -19,6 +19,8 @@ from S2Range import S2Range
 from S2Cut import S2Cut
 from S2GenericLocation import S2GenericLocation
 
+from SBOL2Serialize import serializeSBOL2
+
 class SBOL2Graph:
     def __init__(self):
         self.g = rdflib.Graph()
@@ -35,7 +37,7 @@ class SBOL2Graph:
         else:
             return None
 
-    def createComponentDefinition(self, uriPrefix, theType, displayId, version="1"):
+    def createComponentDefinition(self, uriPrefix, displayId, theType, version="1"):
         identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None, version)
         cd = S2ComponentDefinition(self, identified.uri)
         cd.type = theType
@@ -46,10 +48,11 @@ class SBOL2Graph:
         md = S2ModuleDefinition(self, identified.uri)
         return md
 
-    def createSequence(self, uriPrefix, displayId, version="1"):
+    def createSequence(self, uriPrefix, displayId, elements, encoding, version="1"):
         identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.Sequence, uriPrefix, displayId, None, version)
-        md = S2Sequence(self, identified.uri)
-        return md
+        seq = S2Sequence(self, identified.uri)
+        seq.encoding = encoding
+        return seq
 
 
     def generateURI(self, template):
@@ -116,6 +119,8 @@ class SBOL2Graph:
             return S2GenericLocation(self, uri)
         return None
 
+    def serializeXML(self):
+        return serializeSBOL2(self)
 
     
 

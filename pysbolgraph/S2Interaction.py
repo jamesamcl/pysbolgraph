@@ -22,5 +22,6 @@ class S2Interaction(S2Identified):
         participation = S2Participation(self.g, identified.uri)
         participation.participant = participant
         participation.addRole(role)
+        self.insertUriProperty(SBOL2.participation, participation.uri)
         return participation
 
