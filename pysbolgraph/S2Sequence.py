@@ -16,6 +16,6 @@ class S2Sequence(S2Identified):
     def elements(self):
         return self.getStringProperty(SBOL2.elements)
     @elements.setter
-    def elements(self, encoding):
+    def elements(self, elements):
         self.setUriProperty(SBOL2.elements, elements)
 
