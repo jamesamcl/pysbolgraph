@@ -1,7 +1,5 @@
-import os
 from distutils.core import setup
-from distutils.command.install import install as _install
-
+import setuptools  # noqa
 
 setup(name='pysbolgraph',
       version='0.1',
