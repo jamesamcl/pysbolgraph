@@ -1,5 +1,4 @@
 from distutils.core import setup
-import setuptools  # noqa
 
 setup(name='pysbolgraph',
       version='0.1',
