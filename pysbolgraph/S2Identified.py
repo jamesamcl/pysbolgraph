@@ -83,11 +83,11 @@ class S2Identified(Facade):
 
     @property
     def display_id(self):
-        return self.get_string_property(SBOL2.display_id)
+        return self.get_string_property(SBOL2.displayId)
 
     @property
     def persistent_identity(self):
-        return self.get_uri_property(SBOL2.persistent_identity)
+        return self.get_uri_property(SBOL2.persistentIdentity)
 
     @property
     def version(self):

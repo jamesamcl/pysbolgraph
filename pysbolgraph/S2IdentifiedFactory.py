@@ -16,12 +16,10 @@ class S2IdentifiedFactory:
 
         uri = graph.generate_uri(uri_prefix + display_id + '$n?$/' + version)
 
-        print 'uri is ' + uri
-
         graph.insert_properties(uri, {
             RDF.type: URIRef(the_type),
-            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
-            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.displayId: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistentIdentity: URIRef(CompliantURIs.get_persistent_identity(uri)),
             SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
@@ -41,8 +39,8 @@ class S2IdentifiedFactory:
 
         graph.insert_properties(uri, {
             RDF.type: URIRef(the_type),
-            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
-            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.displayId: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistentIdentity: URIRef(CompliantURIs.get_persistent_identity(uri)),
             SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
