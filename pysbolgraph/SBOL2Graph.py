@@ -12,6 +12,7 @@ from S2Module import S2Module, S2ModuleDefinition
 from S2Sequence import S2Sequence
 
 from S2IdentifiedFactory import S2IdentifiedFactory
+import S2SequenceAnnotation, S2SequenceConstraint, S2Model, S2Range, S2Cut, S2GenericLocation
 
 class SBOL2Graph:
     def __init__(self):

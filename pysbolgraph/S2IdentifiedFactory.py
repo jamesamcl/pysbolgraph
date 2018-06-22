@@ -3,6 +3,7 @@ from rdflib import Literal, URIRef
 from rdflib.namespace import RDF
 from terms import SBOL2
 from S2Identified import S2Identified
+from terms import Dcterms
 
 import CompliantURIs
 

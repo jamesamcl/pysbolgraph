@@ -4,6 +4,7 @@ from S2IdentifiedFactory import S2IdentifiedFactory
 from S2Interaction import S2Interaction
 from S2FunctionalComponent import S2FunctionalComponent
 from S2MapsTo import S2MapsTo
+from S2Component import S2ComponentDefinition
 
 from terms import SBOL2
 
