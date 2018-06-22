@@ -1,10 +1,9 @@
-
-
 from S2Identified import S2Identified
 from S2Participation import S2Participation
 from S2IdentifiedFactory import S2IdentifiedFactory
 
 from terms import SBOL2
+
 
 class S2Interaction(S2Identified):
     def __init__(self, g, uri):
@@ -13,6 +12,7 @@ class S2Interaction(S2Identified):
     @property
     def type(self):
         return self.getUriProperty(SBOL2.type)
+
     @type.setter
     def type(self, theType):
         self.setUriProperty(SBOL2.type, theType)
@@ -24,4 +24,3 @@ class S2Interaction(S2Identified):
         participation.addRole(role)
         self.insertUriProperty(SBOL2.participation, participation.uri)
         return participation
-

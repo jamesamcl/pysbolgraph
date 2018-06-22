@@ -1,17 +1,16 @@
-
 from rdflib.namespace import ClosedNamespace
 from rdflib import URIRef
 
-Dcterms = ClosedNamespace(                                                         
+Dcterms = ClosedNamespace(
     uri=URIRef("http://purl.org/dc/terms/"),
-    terms=[                                                                     
+    terms=[
         "title"
     ]
-)     
+)
 
 SBOL2 = ClosedNamespace(
     uri=URIRef("http://sbols.org/v2#"),
-    terms=[                                                                     
+    terms=[
         # types
         "ComponentDefinition",
         "Component",
@@ -46,7 +45,7 @@ SBOL2 = ClosedNamespace(
         "encoding",
         "elements",
         "restriction",
-        
+
         # terms
         "precedes",
         "local",
@@ -57,15 +56,14 @@ SBOL2 = ClosedNamespace(
         "useLocal",
         "useRemote",
     ]
-)     
+)
 
 Biopax = ClosedNamespace(
     uri=URIRef("http://www.biopax.org/release/biopax-level3.owl#"),
-    terms=[                                                                     
+    terms=[
         "DnaRegion",
         "RnaRegion",
         "Protein",
         "Complex"
     ]
-)     
-
+)

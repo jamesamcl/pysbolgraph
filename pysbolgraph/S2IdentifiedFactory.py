@@ -1,4 +1,3 @@
-
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF
 from terms import SBOL2
@@ -7,8 +6,8 @@ from terms import Dcterms
 
 import CompliantURIs
 
+
 class S2IdentifiedFactory:
-    
     def __init__(self):
         pass
 
@@ -17,7 +16,7 @@ class S2IdentifiedFactory:
 
         uri = graph.generateURI(uriPrefix + displayId + '$n?$/' + version)
 
-        print 'uri is '  +uri
+        print 'uri is ' + uri
 
         graph.insertProperties(uri, {
             RDF.type: URIRef(theType),
@@ -27,7 +26,7 @@ class S2IdentifiedFactory:
         })
 
         if name:
-            graph.insertProperties(uri, { Dcterms.title: Literal(name) })
+            graph.insertProperties(uri, {Dcterms.title: Literal(name)})
 
         return S2Identified(graph, uri)
 
@@ -48,7 +47,6 @@ class S2IdentifiedFactory:
         })
 
         if name is not None:
-            graph.insertProperties(uri, { Dcterms.title: Literal(name) })
+            graph.insertProperties(uri, {Dcterms.title: Literal(name)})
 
         return S2Identified(graph, uri)
-

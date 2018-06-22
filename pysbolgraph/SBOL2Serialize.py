@@ -1,4 +1,3 @@
-
 from lxml import etree
 from lxml.etree import tostring
 from lxml.etree import QName
@@ -17,11 +16,11 @@ ownership_predicates = {
     sbolNS + 'interaction',
     sbolNS + 'participation',
     sbolNS + 'functionalComponent',
-    sbolNS + 'sequenceConstraint'   
+    sbolNS + 'sequenceConstraint'
 }
 
-def serializeSBOL2(g):
 
+def serializeSBOL2(g):
     prefixes = dict()
     prefixes['rdf'] = rdfNS
     prefixes['sbol'] = sbolNS
@@ -30,16 +29,16 @@ def serializeSBOL2(g):
 
     owned_elements = set()
 
-    for triple in g.triples( (None, RDF.type, None) ):
+    for triple in g.triples((None, RDF.type, None)):
         subject = triple[0].toPython()
         theType = triple[2].toPython()
         subject_to_element[subject] = etree.Element(prefixify(theType, prefixes, True),
-            attrib = {
-                QName(rdfNS, 'about'): subject
-            }
-        )
+                                                    attrib={
+                                                        QName(rdfNS, 'about'): subject
+                                                    }
+                                                    )
 
-    for triple in g.triples( (None, None, None) ):
+    for triple in g.triples((None, None, None)):
         subject = triple[0].toPython()
         predicate = triple[1].toPython()
         obj = triple[2]
@@ -53,7 +52,7 @@ def serializeSBOL2(g):
             owned_elements.add(obj.toPython())
             continue
         if isinstance(obj, URIRef):
-            etree.SubElement(element, prefixify(predicate, prefixes, True), attrib = {
+            etree.SubElement(element, prefixify(predicate, prefixes, True), attrib={
                 QName(rdfNS, 'resource'): obj.toPython()
             })
         elif isinstance(obj, Literal):
@@ -71,6 +70,7 @@ def serializeSBOL2(g):
 
     print tostring(doc, pretty_print=True)
 
+
 def prefixify(iri, prefixes, createNew):
     for prefix in prefixes:
         prefixIRI = prefixes[prefix]
@@ -83,7 +83,7 @@ def prefixify(iri, prefixes, createNew):
         fragmentStart = iri.rfind('/')
     if fragmentStart == -1:
         return iri
-    iriPrefix = iri[:fragmentStart+1]
+    iriPrefix = iri[:fragmentStart + 1]
     i = 0
     while True:
         prefixName = 'ns' + str(i)
@@ -91,4 +91,3 @@ def prefixify(iri, prefixes, createNew):
             prefixes[prefixName] = iriPrefix
             return QName(iriPrefix, iri[len(iriPrefix):])
         i = i + 1
-

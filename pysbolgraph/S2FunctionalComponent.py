@@ -1,7 +1,7 @@
-
 from S2Identified import S2Identified
 
 from terms import SBOL2
+
 
 class S2FunctionalComponent(S2Identified):
     def __init__(self, g, uri):
@@ -10,6 +10,7 @@ class S2FunctionalComponent(S2Identified):
     @property
     def definition(self):
         return self.getIdentifiedProperty(SBOL2.definition)
+
     @definition.setter
     def definition(self, definition):
         self.setIdentifiedProperty(SBOL2.definition, definition)
@@ -17,6 +18,7 @@ class S2FunctionalComponent(S2Identified):
     @property
     def access(self):
         return self.getUriProperty(SBOL2.access)
+
     @access.setter
     def access(self, access):
         self.setUriProperty(SBOL2.access, access)
@@ -24,8 +26,7 @@ class S2FunctionalComponent(S2Identified):
     @property
     def direction(self):
         return self.getUriProperty(SBOL2.direction)
+
     @direction.setter
     def direction(self, direction):
         self.setUriProperty(SBOL2.direction, direction)
-
-

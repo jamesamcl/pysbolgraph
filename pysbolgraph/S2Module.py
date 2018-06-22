@@ -1,4 +1,3 @@
-
 from S2Identified import S2Identified
 from S2IdentifiedFactory import S2IdentifiedFactory
 from S2Interaction import S2Interaction
@@ -10,6 +9,7 @@ from terms import SBOL2
 
 from rdflib import URIRef
 
+
 class S2ModuleDefinition(S2Identified):
     def __init__(self, g, uri):
         super(S2ModuleDefinition, self).__init__(g, uri)
@@ -17,14 +17,16 @@ class S2ModuleDefinition(S2Identified):
     @property
     def roles(self):
         return self.getUriProperties(SBOL2.role)
+
     def hasRole(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
+
     def addRole(self, role):
-        self.insertProperties({ SBOL2.role: URIRef(role) })
+        self.insertProperties({SBOL2.role: URIRef(role)})
 
     @property
     def modules(self):
-        return [ S2Module(self.g, uri) for uri in self.getUriProperties(SBOL2.module) ]
+        return [S2Module(self.g, uri) for uri in self.getUriProperties(SBOL2.module)]
 
     def createInteraction(self, displayId, theType):
         print 'ci params are', self, displayId, theType
@@ -51,6 +53,7 @@ class S2ModuleDefinition(S2Identified):
         self.insertUriProperty(SBOL2.module, new_module.uri)
         return new_module
 
+
 class S2Module(S2Identified):
     def __init__(self, g, uri):
         super(S2Module, self).__init__(g, uri)
@@ -62,7 +65,7 @@ class S2Module(S2Identified):
     @definition.setter
     def definition(self, definition):
         self.setIdentifiedProperty(SBOL2.definition, definition)
-    
+
     def createMapsTo(self, displayId, refinement, local, remote):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.MapsTo, self, displayId)
         mapsTo = S2MapsTo(self.g, identified.uri)
@@ -71,6 +74,3 @@ class S2Module(S2Identified):
         mapsTo.refinement = refinement
         self.insertUriProperty(SBOL2.mapsTo, mapsTo.uri)
         return mapsTo
-    
-
-

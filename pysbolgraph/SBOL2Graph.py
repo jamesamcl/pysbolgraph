@@ -1,4 +1,3 @@
-
 import rdflib
 
 from rdflib import URIRef
@@ -21,14 +20,18 @@ from S2GenericLocation import S2GenericLocation
 
 from SBOL2Serialize import serializeSBOL2
 
+
 class SBOL2Graph:
     def __init__(self):
         self.g = rdflib.Graph()
+
     def load(self, url):
         self.g.load(url)
+
     @property
     def componentDefinitions(self):
-        return [ S2ComponentDefinition(self.g, triple[0]) for triple in self.g.triples( (None, RDF.type, SBOL2.ComponentDefinition) ) ]
+        return [S2ComponentDefinition(self.g, triple[0]) for triple in
+                self.g.triples((None, RDF.type, SBOL2.ComponentDefinition))]
 
     def getType(self, uri):
         triples = self.g.triples(uri, RDF.type, None)
@@ -38,13 +41,15 @@ class SBOL2Graph:
             return None
 
     def createComponentDefinition(self, uriPrefix, displayId, theType, version="1"):
-        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None, version)
+        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None,
+                                                        version)
         cd = S2ComponentDefinition(self, identified.uri)
         cd.type = theType
         return cd
 
     def createModuleDefinition(self, uriPrefix, displayId, version="1"):
-        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ModuleDefinition, uriPrefix, displayId, None, version)
+        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ModuleDefinition, uriPrefix, displayId, None,
+                                                        version)
         md = S2ModuleDefinition(self, identified.uri)
         return md
 
@@ -55,9 +60,8 @@ class SBOL2Graph:
         seq.elements = elements
         return seq
 
-
     def generateURI(self, template):
-        
+
         n = 1
 
         while True:
@@ -73,7 +77,7 @@ class SBOL2Graph:
             n = n + 1
 
             # TODO!!!!
-            if len(list(self.g.triples( (uri, None, None ) ))) > 0:
+            if len(list(self.g.triples((uri, None, None)))) > 0:
                 continue
 
             return uri
@@ -90,7 +94,7 @@ class SBOL2Graph:
     def insertProperties(self, uri, properties):
         for predicate in properties:
             obj = properties[predicate]
-            self.g.add( (URIRef(uri), URIRef(predicate), obj) )
+            self.g.add((URIRef(uri), URIRef(predicate), obj))
 
     def uriToFacade(self, uri):
         theType = self.getType(uri)
@@ -122,6 +126,3 @@ class SBOL2Graph:
 
     def serializeXML(self):
         return serializeSBOL2(self)
-
-    
-
