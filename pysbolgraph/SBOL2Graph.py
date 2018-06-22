@@ -33,6 +33,12 @@ class SBOL2Graph:
         return [S2ComponentDefinition(self.g, triple[0]) for triple in
                 self.g.triples((None, RDF.type, SBOL2.ComponentDefinition))]
 
+
+    @property
+    def sequences(self):
+        return [S2Sequence(self.g, triple[0]) for triple in
+                self.g.triples((None, RDF.type, SBOL2.Sequence))]
+
     def get_type(self, uri):
         triples = self.g.triples(uri, RDF.type, None)
         if len(triples) > 0:
