@@ -33,7 +33,7 @@ class S2IdentifiedFactory:
 
         version = parent.version
 
-        print(parent.persistent_identity, display_id, version)
+        print("%s %s %s" % (parent.persistent_identity, display_id, version))
 
         uri = graph.generate_uri(parent.persistent_identity + '/' + display_id + '$n?$/' + version)
 

@@ -65,7 +65,7 @@ class Facade(object):
         elif isinstance(value, str):
             self.insert_uri_property(URIRef(predicate), URIRef(value))
         else:
-            print('you asked me to insert', value, 'but i do not know how')
+            print('you asked me to insert %s but i do not know how' % value)
             raise Exception()
 
 
