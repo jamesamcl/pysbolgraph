@@ -44,6 +44,8 @@ SBOL2 = ClosedNamespace(
         "module",
         "participation",
         "encoding",
+        "elements",
+        "restriction",
         
         # terms
         "precedes",

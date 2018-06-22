@@ -52,6 +52,7 @@ class SBOL2Graph:
         identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.Sequence, uriPrefix, displayId, None, version)
         seq = S2Sequence(self, identified.uri)
         seq.encoding = encoding
+        seq.elements = elements
         return seq
 
 
