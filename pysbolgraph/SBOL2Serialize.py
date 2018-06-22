@@ -65,7 +65,7 @@ def serializeSBOL2(g):
     doc = etree.Element(QName(rdfNS, 'RDF'), nsmap=prefixes)
 
     for subject in subject_to_element:
-        if not subject in owned_elements:
+        if subject not in owned_elements:
             element = subject_to_element[subject]
             doc.append(element)
 
@@ -87,7 +87,7 @@ def prefixify(iri, prefixes, createNew):
     i = 0
     while True:
         prefixName = 'ns' + str(i)
-        if not prefixName in prefixes:
+        if prefixName not in prefixes:
             prefixes[prefixName] = iriPrefix
             return QName(iriPrefix, iri[len(iriPrefix):])
         i = i + 1
