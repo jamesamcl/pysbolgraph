@@ -2,6 +2,8 @@
 from S2Identified import S2Identified
 from S2SequenceAnnotation import S2SequenceAnnotation
 from S2Sequence import S2Sequence
+from S2SequenceConstraint import S2SequenceConstraint
+from S2IdentifiedFactory import S2IdentifiedFactory
 
 from terms import SBOL2, Dcterms
 
@@ -38,7 +40,16 @@ class S2ComponentDefinition(S2Identified):
     @property
     def sequences(self):
         return [ S2Sequence(self.g, uri) for uri in self.getUriProperties(SBOL2.sequence) ]
+
+    def addSequence(self, sequence):
+        self.insertIdentifiedProperty(SBOL2.sequence, sequence)
     
+    def createSequenceConstraint(self, displayId, restriction, a, b):
+        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.SequenceConstraint, self, displayId)
+        sc = S2SequenceConstraint(self.g, identified.uri)
+        sc.subject = a
+        sc.object = b
+        return sc
 
 
 class S2Component(S2Identified):

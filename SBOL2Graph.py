@@ -1,11 +1,17 @@
 
 import rdflib
 
+from rdflib import URIRef
+
 from rdflib.namespace import RDF
 
 from terms import SBOL2
 
 from S2Component import S2Component, S2ComponentDefinition
+from S2Module import S2Module, S2ModuleDefinition
+from S2Sequence import S2Sequence
+
+from S2IdentifiedFactory import S2IdentifiedFactory
 
 class SBOL2Graph:
     def __init__(self):
@@ -16,12 +22,65 @@ class SBOL2Graph:
     def componentDefinitions(self):
         return [ S2ComponentDefinition(self.g, triple[0]) for triple in self.g.triples( (None, RDF.type, SBOL2.ComponentDefinition) ) ]
 
-    def getType(uri):
+    def getType(self, uri):
         triples = self.g.triples(uri, RDF.type, None)
         if len(triples) > 0:
             return triples[0][2].toPython()
         else:
             return None
+
+    def createComponentDefinition(self, uriPrefix, type, displayId, version="1"):
+        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None, version)
+        cd = S2ComponentDefinition(self, identified.uri)
+        cd.type = type
+        return cd
+
+    def createModuleDefinition(self, uriPrefix, displayId, version="1"):
+        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ModuleDefinition, uriPrefix, displayId, None, version)
+        md = S2ModuleDefinition(self, identified.uri)
+        return md
+
+    def createSequence(self, uriPrefix, displayId, version="1"):
+        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.Sequence, uriPrefix, displayId, None, version)
+        md = S2Sequence(self, identified.uri)
+        return md
+
+
+    def generateURI(self, template):
+        
+        n = 1
+
+        while True:
+
+            if n > 1:
+                foobar = '_' + str(n)
+            else:
+                foobar = ''
+
+            # uri = template.replace('$rand$', shortid.generate()).replace('$^n$', '' + n).replace('$n$', '_' + n).replace('$n?$', foobar)
+            uri = template.replace('$^n$', str(n)).replace('$n$', '_' + str(n)).replace('$n?$', foobar)
+
+            n = n + 1
+
+            # TODO!!!!
+            if len(list(self.g.triples( (uri, None, None ) ))) > 0:
+                continue
+
+            return uri
+
+    def triples(self, pattern):
+        return self.g.triples(pattern)
+
+    def remove(self, pattern):
+        self.g.remove(pattern)
+
+    def add(self, triple):
+        self.g.add(triple)
+
+    def insertProperties(self, uri, properties):
+        for predicate in properties:
+            obj = properties[predicate]
+            self.g.add( (URIRef(uri), URIRef(predicate), obj) )
 
     def uriToFacade(self, uri):
         type = self.getType(uri)
@@ -50,4 +109,7 @@ class SBOL2Graph:
         if type == SBOL2.GenericLocation:
             return S2GenericLocation(self, uri)
         return None
+
+
+    
 

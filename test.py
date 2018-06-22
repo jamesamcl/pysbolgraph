@@ -15,10 +15,5 @@ for componentDefinition in g.componentDefinitions:
 
 cd = g.componentDefinitions[0]
 
-print cd.types
-
-cd.addType('http://foo/sometype')
-
-print cd.types
-
+print 'displayid is ' + cd.displayId
 

@@ -19,5 +19,13 @@ class S2MapsTo(S2Identified):
     def remote(self, remote):
         self.setIdentifiedProperty(SBOL2.remote, remote)
 
+    @property
+    def refinement(self):
+        return self.getUriProperty(SBOL2.refinement)
+    @refinement.setter
+    def refinement(self, refinement):
+        self.setUriProperty(SBOL2.refinement, refinement)
+
+
 
 
