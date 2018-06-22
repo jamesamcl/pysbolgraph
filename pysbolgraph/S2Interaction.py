@@ -12,7 +12,7 @@ class S2Interaction(S2Identified):
 
     @property
     def type(self):
-        return this.getUriProperty(SBOL2.type)
+        return self.getUriProperty(SBOL2.type)
     @type.setter
     def type(self, theType):
         self.setUriProperty(SBOL2.type, theType)
