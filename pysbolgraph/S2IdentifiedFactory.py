@@ -31,7 +31,7 @@ class S2IdentifiedFactory:
         return S2Identified(graph, uri)
 
     @staticmethod
-    def createChild(graph, type, parent, displayId, name=None):
+    def createChild(graph, theType, parent, displayId, name=None):
 
         version = parent.version
 
@@ -40,7 +40,7 @@ class S2IdentifiedFactory:
         uri = graph.generateURI(parent.persistentIdentity + '/' + displayId + '$n?$/' + version)
 
         graph.insertProperties(uri, {
-            RDF.type: URIRef(type),
+            RDF.type: URIRef(theType),
             SBOL2.displayId: Literal(CompliantURIs.getDisplayId(uri)),
             SBOL2.persistentIdentity: URIRef(CompliantURIs.getPersistentIdentity(uri)),
             SBOL2.version: Literal(CompliantURIs.getVersion(uri))

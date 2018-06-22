@@ -43,9 +43,9 @@ class S2ModuleDefinition(S2Identified):
 
     def createModule(self, displayId, definition):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Module, self, displayId)
-        module = S2Module(self.g, identified.uri)
-        module.definition = definition
-        return module
+        new_module = S2Module(self.g, identified.uri)
+        new_module.definition = definition
+        return new_module
 
 
 class S2Module(S2Identified):
