@@ -15,5 +15,5 @@ setup(name='pysbolgraph',
 
       packages=['pysbolgraph'],
       
-      requires=[]
+      requires=['rdflib']
       )
