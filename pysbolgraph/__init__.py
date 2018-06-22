@@ -16,5 +16,4 @@ import S2Sequence
 import S2SequenceAnnotation
 import S2SequenceConstraint
 import SBOL2Graph
-import Facade
 import terms

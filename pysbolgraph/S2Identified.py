@@ -1,10 +1,7 @@
 
 from rdflib import Literal, URIRef
 
-from Facade import Facade
-
 from terms import SBOL2, Dcterms
-
 
 class Facade(object):
     def __init__(self, g, uri):
