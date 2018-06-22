@@ -91,8 +91,5 @@ class S2Identified(Facade):
         name = self.name
         if name is not None:
             return name
-        definitionName = self.definition.name
-        if definitionName is not None:
-            return definitionName
         return self.displayId
     
