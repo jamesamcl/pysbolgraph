@@ -130,15 +130,17 @@ class SBOL2Graph:
         return serialize_sboll2(self)
 
     @staticmethod
-    def validate_xml(xml):
+    def validate_xml(xml, check_uri_compliance=False, check_completeness=False, check_best_practices=False,
+                     provide_detailed_stack_trace=False):
+
         # See API docs at http://synbiodex.github.io/SBOL-Validator/#introduction
-        request = {'options': {'language': 'GenBank',
+        request = {'options': {'language': 'SBOL2',
                                'test_equality': False,
-                               'check_uri_compliance': False,
-                               'check_completeness': False,
-                               'check_best_practices': False,
+                               'check_uri_compliance': check_uri_compliance,
+                               'check_completeness': check_completeness,
+                               'check_best_practices': check_best_practices,
                                'fail_on_first_error': False,
-                               'provide_detailed_stack_trace': False,
+                               'provide_detailed_stack_trace': provide_detailed_stack_trace,
                                'subset_uri': '',
                                'uri_prefix': '',
                                'version': '',
