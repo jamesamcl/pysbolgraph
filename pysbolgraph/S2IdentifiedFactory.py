@@ -1,10 +1,10 @@
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF
-from terms import SBOL2
-from S2Identified import S2Identified
-from terms import Dcterms
+from .terms import SBOL2
+from .S2Identified import S2Identified
+from .terms import Dcterms
 
-import CompliantURIs
+from . import CompliantURIs
 
 
 class S2IdentifiedFactory:
@@ -33,7 +33,7 @@ class S2IdentifiedFactory:
 
         version = parent.version
 
-        print parent.persistent_identity, display_id, version
+        print(parent.persistent_identity, display_id, version)
 
         uri = graph.generate_uri(parent.persistent_identity + '/' + display_id + '$n?$/' + version)
 

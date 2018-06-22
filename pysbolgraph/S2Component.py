@@ -1,10 +1,10 @@
-from S2Identified import S2Identified
-from S2SequenceAnnotation import S2SequenceAnnotation
-from S2Sequence import S2Sequence
-from S2SequenceConstraint import S2SequenceConstraint
-from S2IdentifiedFactory import S2IdentifiedFactory
+from .S2Identified import S2Identified
+from .S2SequenceAnnotation import S2SequenceAnnotation
+from .S2Sequence import S2Sequence
+from .S2SequenceConstraint import S2SequenceConstraint
+from .S2IdentifiedFactory import S2IdentifiedFactory
 
-from terms import SBOL2
+from .terms import SBOL2
 
 from rdflib import URIRef
 

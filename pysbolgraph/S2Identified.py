@@ -1,6 +1,6 @@
 from rdflib import Literal, URIRef
 
-from terms import SBOL2, Dcterms
+from .terms import SBOL2, Dcterms
 
 
 class Facade(object):
@@ -65,7 +65,7 @@ class Facade(object):
         elif isinstance(value, str):
             self.insert_uri_property(URIRef(predicate), URIRef(value))
         else:
-            print 'you asked me to insert', value, 'but i do not know how'
+            print('you asked me to insert', value, 'but i do not know how')
             raise Exception()
 
 
