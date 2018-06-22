@@ -14,7 +14,7 @@ class Facade(object):
         return None
     def setStringProperty(self, predicate, value):
         self.g.remove( (URIRef(self.uri), URIRef(predicate), None) )
-        self.g.add( (URIRef(self.uri), URIRef(predicate), Literal(obj)) )
+        self.g.add( (URIRef(self.uri), URIRef(predicate), Literal(value)) )
 
     def getIntegerProperty(self, predicate):
         for triple in self.g.triples( (URIRef(self.uri), URIRef(predicate), None) ):
@@ -22,7 +22,7 @@ class Facade(object):
         return None
     def setIntegerProperty(self, predicate, value):
         self.g.remove( (URIRef(self.uri), URIRef(predicate), None) )
-        self.g.add( (URIRef(self.uri), URIRef(predicate), Literal(obj)) )
+        self.g.add( (URIRef(self.uri), URIRef(predicate), Literal(value)) )
 
     def setUriProperty(self, predicate, value):
         self.g.remove( (URIRef(self.uri), URIRef(predicate), None) )
