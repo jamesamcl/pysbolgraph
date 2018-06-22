@@ -13,7 +13,7 @@ class S2SequenceAnnotation(S2Identified):
     def hasRole(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
     def addRole(self, role):
-        self.insertIdentifiedProperty({ SBOL2.role: URIRef(role) })
+        self.insertIdentifiedProperty(SBOL2.role, URIRef(role))
 
     @property
     def locations(self):
