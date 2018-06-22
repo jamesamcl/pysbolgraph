@@ -1,5 +1,5 @@
 
-from SBOL2Graph import SBOL2Graph
+from pysbolgraph.SBOL2Graph import SBOL2Graph
 
 g = SBOL2Graph()
 

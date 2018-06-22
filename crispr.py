@@ -1,7 +1,7 @@
 
-from SBOL2Graph import SBOL2Graph
+from pysbolgraph.SBOL2Graph import SBOL2Graph
 
-from terms import Biopax, SBOL2
+from pysbolgraph.terms import Biopax, SBOL2
 
 uriPrefix = 'http://deadparrot/'
 
