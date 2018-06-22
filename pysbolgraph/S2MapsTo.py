@@ -9,24 +9,24 @@ class S2MapsTo(S2Identified):
 
     @property
     def local(self):
-        return self.g.uriToFacade(self.getUriProperty(SBOL2.local))
+        return self.g.uri_to_facade(self.get_uri_property(SBOL2.local))
 
     @local.setter
     def local(self, local):
-        self.setIdentifiedProperty(SBOL2.local, local)
+        self.set_identified_property(SBOL2.local, local)
 
     @property
     def remote(self):
-        return self.g.uriToFacade(self.getUriProperty(SBOL2.remote))
+        return self.g.uri_to_facade(self.get_uri_property(SBOL2.remote))
 
     @remote.setter
     def remote(self, remote):
-        self.setIdentifiedProperty(SBOL2.remote, remote)
+        self.set_identified_property(SBOL2.remote, remote)
 
     @property
     def refinement(self):
-        return self.getUriProperty(SBOL2.refinement)
+        return self.get_uri_property(SBOL2.refinement)
 
     @refinement.setter
     def refinement(self, refinement):
-        self.setUriProperty(SBOL2.refinement, refinement)
+        self.set_uri_property(SBOL2.refinement, refinement)

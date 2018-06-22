@@ -9,24 +9,24 @@ class S2FunctionalComponent(S2Identified):
 
     @property
     def definition(self):
-        return self.getIdentifiedProperty(SBOL2.definition)
+        return self.get_identified_property(SBOL2.definition)
 
     @definition.setter
     def definition(self, definition):
-        self.setIdentifiedProperty(SBOL2.definition, definition)
+        self.set_identified_property(SBOL2.definition, definition)
 
     @property
     def access(self):
-        return self.getUriProperty(SBOL2.access)
+        return self.get_uri_property(SBOL2.access)
 
     @access.setter
     def access(self, access):
-        self.setUriProperty(SBOL2.access, access)
+        self.set_uri_property(SBOL2.access, access)
 
     @property
     def direction(self):
-        return self.getUriProperty(SBOL2.direction)
+        return self.get_uri_property(SBOL2.direction)
 
     @direction.setter
     def direction(self, direction):
-        self.setUriProperty(SBOL2.direction, direction)
+        self.set_uri_property(SBOL2.direction, direction)

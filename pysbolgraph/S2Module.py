@@ -16,41 +16,41 @@ class S2ModuleDefinition(S2Identified):
 
     @property
     def roles(self):
-        return self.getUriProperties(SBOL2.role)
+        return self.get_uri_properties(SBOL2.role)
 
-    def hasRole(self, role):
+    def has_role(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
 
-    def addRole(self, role):
-        self.insertProperties({SBOL2.role: URIRef(role)})
+    def add_role(self, role):
+        self.insert_properties({SBOL2.role: URIRef(role)})
 
     @property
     def modules(self):
-        return [S2Module(self.g, uri) for uri in self.getUriProperties(SBOL2.module)]
+        return [S2Module(self.g, uri) for uri in self.get_uri_properties(SBOL2.module)]
 
-    def createInteraction(self, displayId, theType):
-        print 'ci params are', self, displayId, theType
-        print 'self pi and version are', self.persistentIdentity, self.version
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Interaction, self, displayId)
+    def create_interaction(self, display_id, the_type):
+        print 'ci params are', self, display_id, the_type
+        print 'self pi and version are', self.persistent_identity, self.version
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Interaction, self, display_id)
         interaction = S2Interaction(self.g, identified.uri)
-        interaction.type = theType
-        self.insertUriProperty(SBOL2.interaction, interaction.uri)
+        interaction.type = the_type
+        self.insert_uri_property(SBOL2.interaction, interaction.uri)
         return interaction
 
-    def createFunctionalComponent(self, displayId, access, definition, direction):
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.FunctionalComponent, self, displayId)
+    def create_functional_component(self, display_id, access, definition, direction):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.FunctionalComponent, self, display_id)
         fc = S2FunctionalComponent(self.g, identified.uri)
         fc.access = access
         fc.definition = definition
         fc.direction = direction
-        self.insertUriProperty(SBOL2.functionalComponent, fc.uri)
+        self.insert_uri_property(SBOL2.functionalComponent, fc.uri)
         return fc
 
-    def createModule(self, displayId, definition):
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Module, self, displayId)
+    def create_module(self, display_id, definition):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Module, self, display_id)
         new_module = S2Module(self.g, identified.uri)
         new_module.definition = definition
-        self.insertUriProperty(SBOL2.module, new_module.uri)
+        self.insert_uri_property(SBOL2.module, new_module.uri)
         return new_module
 
 
@@ -60,17 +60,17 @@ class S2Module(S2Identified):
 
     @property
     def definition(self):
-        return S2ComponentDefinition(self.g, self.getUriProperty(SBOL2.definition))
+        return S2ComponentDefinition(self.g, self.get_uri_property(SBOL2.definition))
 
     @definition.setter
     def definition(self, definition):
-        self.setIdentifiedProperty(SBOL2.definition, definition)
+        self.set_identified_property(SBOL2.definition, definition)
 
-    def createMapsTo(self, displayId, refinement, local, remote):
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.MapsTo, self, displayId)
-        mapsTo = S2MapsTo(self.g, identified.uri)
-        mapsTo.local = local
-        mapsTo.remote = remote
-        mapsTo.refinement = refinement
-        self.insertUriProperty(SBOL2.mapsTo, mapsTo.uri)
-        return mapsTo
+    def create_maps_to(self, display_id, refinement, local, remote):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.MapsTo, self, display_id)
+        maps_to = S2MapsTo(self.g, identified.uri)
+        maps_to.local = local
+        maps_to.remote = remote
+        maps_to.refinement = refinement
+        self.insert_uri_property(SBOL2.mapsTo, maps_to.uri)
+        return maps_to

@@ -9,12 +9,12 @@ class S2Range(S2Location):
 
     @property
     def start(self):
-        return self.getIntegerProperty(SBOL2.start)
+        return self.get_integer_property(SBOL2.start)
 
     @property
     def end(self):
-        return self.getIntegerProperty(SBOL2.end)
+        return self.get_integer_property(SBOL2.end)
 
     @property
     def orientation(self):
-        return self.getUriProperty(SBOL2.orientation)
+        return self.get_uri_property(SBOL2.orientation)

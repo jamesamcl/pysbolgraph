@@ -9,4 +9,4 @@ class S2Cut(S2Location):
 
     @property
     def at(self):
-        return self.getIntegerProperty(SBOL2.at)
+        return self.get_integer_property(SBOL2.at)

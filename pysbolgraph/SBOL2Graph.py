@@ -18,7 +18,7 @@ from S2Range import S2Range
 from S2Cut import S2Cut
 from S2GenericLocation import S2GenericLocation
 
-from SBOL2Serialize import serializeSBOL2
+from SBOL2Serialize import serialize_sboll2
 
 
 class SBOL2Graph:
@@ -29,38 +29,38 @@ class SBOL2Graph:
         self.g.load(url)
 
     @property
-    def componentDefinitions(self):
+    def component_definitions(self):
         return [S2ComponentDefinition(self.g, triple[0]) for triple in
                 self.g.triples((None, RDF.type, SBOL2.ComponentDefinition))]
 
-    def getType(self, uri):
+    def get_type(self, uri):
         triples = self.g.triples(uri, RDF.type, None)
         if len(triples) > 0:
             return triples[0][2].toPython()
         else:
             return None
 
-    def createComponentDefinition(self, uriPrefix, displayId, theType, version="1"):
-        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None,
-                                                        version)
+    def create_component_definition(self, uri_prefix, display_id, the_type, version="1"):
+        identified = S2IdentifiedFactory.create_top_level(self, SBOL2.ComponentDefinition, uri_prefix, display_id, None,
+                                                          version)
         cd = S2ComponentDefinition(self, identified.uri)
-        cd.type = theType
+        cd.type = the_type
         return cd
 
-    def createModuleDefinition(self, uriPrefix, displayId, version="1"):
-        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ModuleDefinition, uriPrefix, displayId, None,
-                                                        version)
+    def create_module_definition(self, uri_prefix, display_id, version="1"):
+        identified = S2IdentifiedFactory.create_top_level(self, SBOL2.ModuleDefinition, uri_prefix, display_id, None,
+                                                          version)
         md = S2ModuleDefinition(self, identified.uri)
         return md
 
-    def createSequence(self, uriPrefix, displayId, elements, encoding, version="1"):
-        identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.Sequence, uriPrefix, displayId, None, version)
+    def create_sequence(self, uri_prefix, display_id, elements, encoding, version="1"):
+        identified = S2IdentifiedFactory.create_top_level(self, SBOL2.Sequence, uri_prefix, display_id, None, version)
         seq = S2Sequence(self, identified.uri)
         seq.encoding = encoding
         seq.elements = elements
         return seq
 
-    def generateURI(self, template):
+    def generate_uri(self, template):
 
         n = 1
 
@@ -91,38 +91,38 @@ class SBOL2Graph:
     def add(self, triple):
         self.g.add(triple)
 
-    def insertProperties(self, uri, properties):
+    def insert_properties(self, uri, properties):
         for predicate in properties:
             obj = properties[predicate]
             self.g.add((URIRef(uri), URIRef(predicate), obj))
 
-    def uriToFacade(self, uri):
-        theType = self.getType(uri)
-        if theType is None:
+    def uri_to_facade(self, uri):
+        the_type = self.get_type(uri)
+        if the_type is None:
             return None
-        if theType == SBOL2.ComponentDefinition:
+        if the_type == SBOL2.ComponentDefinition:
             return S2ComponentDefinition(self, uri)
-        if theType == SBOL2.Component:
+        if the_type == SBOL2.Component:
             return S2Component(self, uri)
-        if theType == SBOL2.SequenceAnnotation:
+        if the_type == SBOL2.SequenceAnnotation:
             return S2SequenceAnnotation(self, uri)
-        if theType == SBOL2.SequenceConstraint:
+        if the_type == SBOL2.SequenceConstraint:
             return S2SequenceConstraint(self, uri)
-        if theType == SBOL2.ModuleDefinition:
+        if the_type == SBOL2.ModuleDefinition:
             return S2ModuleDefinition(self, uri)
-        if theType == SBOL2.Module:
+        if the_type == SBOL2.Module:
             return S2Module(self, uri)
-        if theType == SBOL2.Sequence:
+        if the_type == SBOL2.Sequence:
             return S2Sequence(self, uri)
-        if theType == SBOL2.Model:
+        if the_type == SBOL2.Model:
             return S2Model(self, uri)
-        if theType == SBOL2.Range:
+        if the_type == SBOL2.Range:
             return S2Range(self, uri)
-        if theType == SBOL2.Cut:
+        if the_type == SBOL2.Cut:
             return S2Cut(self, uri)
-        if theType == SBOL2.GenericLocation:
+        if the_type == SBOL2.GenericLocation:
             return S2GenericLocation(self, uri)
         return None
 
-    def serializeXML(self):
-        return serializeSBOL2(self)
+    def serialize_xml(self):
+        return serialize_sboll2(self)

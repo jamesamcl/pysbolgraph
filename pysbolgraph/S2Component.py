@@ -15,46 +15,46 @@ class S2ComponentDefinition(S2Identified):
 
     @property
     def types(self):
-        return self.getUriProperties(SBOL2.type)
+        return self.get_uri_properties(SBOL2.type)
 
-    def hasType(self, theType):
-        return self.g.hasMatch(self.uri, SBOL2.type, URIRef(theType))
+    def has_type(self, the_type):
+        return self.g.hasMatch(self.uri, SBOL2.type, URIRef(the_type))
 
-    def addType(self, theType):
-        self.insertProperties({SBOL2.type: URIRef(theType)})
+    def add_type(self, the_type):
+        self.insert_properties({SBOL2.type: URIRef(the_type)})
 
     @property
     def roles(self):
-        return self.getUriProperties(SBOL2.role)
+        return self.get_uri_properties(SBOL2.role)
 
-    def hasRole(self, role):
+    def has_role(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
 
-    def addRole(self, role):
-        self.insertProperties({SBOL2.role: URIRef(role)})
+    def add_role(self, role):
+        self.insert_properties({SBOL2.role: URIRef(role)})
 
     @property
     def components(self):
-        return [S2Component(self.g, uri) for uri in self.getUriProperties(SBOL2.component)]
+        return [S2Component(self.g, uri) for uri in self.get_uri_properties(SBOL2.component)]
 
     @property
-    def sequenceAnnotations(self):
-        return [S2SequenceAnnotation(self.g, uri) for uri in self.getUriProperties(SBOL2.sequenceAnnotation)]
+    def sequence_annotations(self):
+        return [S2SequenceAnnotation(self.g, uri) for uri in self.get_uri_properties(SBOL2.sequenceAnnotation)]
 
     @property
     def sequences(self):
-        return [S2Sequence(self.g, uri) for uri in self.getUriProperties(SBOL2.sequence)]
+        return [S2Sequence(self.g, uri) for uri in self.get_uri_properties(SBOL2.sequence)]
 
-    def addSequence(self, sequence):
-        self.insertIdentifiedProperty(SBOL2.sequence, sequence)
+    def add_sequence(self, sequence):
+        self.insert_identified_property(SBOL2.sequence, sequence)
 
-    def createSequenceConstraint(self, displayId, restriction, a, b):
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.SequenceConstraint, self, displayId)
+    def create_sequence_constraint(self, display_id, restriction, a, b):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.SequenceConstraint, self, display_id)
         sc = S2SequenceConstraint(self.g, identified.uri)
         sc.subject = a
         sc.object = b
         sc.restriction = restriction
-        self.insertUriProperty(SBOL2.sequenceConstraint, sc.uri)
+        self.insert_uri_property(SBOL2.sequenceConstraint, sc.uri)
         return sc
 
 
@@ -64,4 +64,4 @@ class S2Component(S2Identified):
 
     @property
     def definition(self):
-        return S2ComponentDefinition(self.g, self.getUriProperty(SBOL2.definition))
+        return S2ComponentDefinition(self.g, self.get_uri_property(SBOL2.definition))

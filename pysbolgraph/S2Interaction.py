@@ -11,16 +11,16 @@ class S2Interaction(S2Identified):
 
     @property
     def type(self):
-        return self.getUriProperty(SBOL2.type)
+        return self.get_uri_property(SBOL2.type)
 
     @type.setter
-    def type(self, theType):
-        self.setUriProperty(SBOL2.type, theType)
+    def type(self, the_type):
+        self.set_uri_property(SBOL2.type, the_type)
 
-    def createParticipation(self, displayId, participant, role):
-        identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Participation, self, displayId)
+    def create_participation(self, display_id, participant, role):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Participation, self, display_id)
         participation = S2Participation(self.g, identified.uri)
         participation.participant = participant
-        participation.addRole(role)
-        self.insertUriProperty(SBOL2.participation, participation.uri)
+        participation.add_role(role)
+        self.insert_uri_property(SBOL2.participation, participation.uri)
         return participation

@@ -20,7 +20,7 @@ ownership_predicates = {
 }
 
 
-def serializeSBOL2(g):
+def serialize_sboll2(g):
     prefixes = dict()
     prefixes['rdf'] = rdfNS
     prefixes['sbol'] = sbolNS
@@ -31,8 +31,8 @@ def serializeSBOL2(g):
 
     for triple in g.triples((None, RDF.type, None)):
         subject = triple[0].toPython()
-        theType = triple[2].toPython()
-        subject_to_element[subject] = etree.Element(prefixify(theType, prefixes, True),
+        the_type = triple[2].toPython()
+        subject_to_element[subject] = etree.Element(prefixify(the_type, prefixes, True),
                                                     attrib={
                                                         QName(rdfNS, 'about'): subject
                                                     }
@@ -71,23 +71,23 @@ def serializeSBOL2(g):
     print tostring(doc, pretty_print=True)
 
 
-def prefixify(iri, prefixes, createNew):
+def prefixify(iri, prefixes, create_new):
     for prefix in prefixes:
-        prefixIRI = prefixes[prefix]
-        if iri.startswith(prefixIRI):
-            return QName(prefixIRI, iri[len(prefixIRI):])
-    if not createNew:
+        prefix_iri = prefixes[prefix]
+        if iri.startswith(prefix_iri):
+            return QName(prefix_iri, iri[len(prefix_iri):])
+    if not create_new:
         return iri
-    fragmentStart = iri.rfind('#')
-    if fragmentStart == -1:
-        fragmentStart = iri.rfind('/')
-    if fragmentStart == -1:
+    fragment_start = iri.rfind('#')
+    if fragment_start == -1:
+        fragment_start = iri.rfind('/')
+    if fragment_start == -1:
         return iri
-    iriPrefix = iri[:fragmentStart + 1]
+    iri_prefix = iri[:fragment_start + 1]
     i = 0
     while True:
-        prefixName = 'ns' + str(i)
-        if prefixName not in prefixes:
-            prefixes[prefixName] = iriPrefix
-            return QName(iriPrefix, iri[len(iriPrefix):])
+        prefix_name = 'ns' + str(i)
+        if prefix_name not in prefixes:
+            prefixes[prefix_name] = iri_prefix
+            return QName(iri_prefix, iri[len(iri_prefix):])
         i = i + 1

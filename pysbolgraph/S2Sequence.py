@@ -9,16 +9,16 @@ class S2Sequence(S2Identified):
 
     @property
     def encoding(self):
-        return self.getUriProperty(SBOL2.encoding)
+        return self.get_uri_property(SBOL2.encoding)
 
     @encoding.setter
     def encoding(self, encoding):
-        self.setUriProperty(SBOL2.encoding, encoding)
+        self.set_uri_property(SBOL2.encoding, encoding)
 
     @property
     def elements(self):
-        return self.getStringProperty(SBOL2.elements)
+        return self.get_string_property(SBOL2.elements)
 
     @elements.setter
     def elements(self, elements):
-        self.setStringProperty(SBOL2.elements, elements)
+        self.set_string_property(SBOL2.elements, elements)

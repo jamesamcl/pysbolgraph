@@ -8,62 +8,62 @@ class Facade(object):
         self.g = g
         self.uri = uri
 
-    def getStringProperty(self, predicate):
+    def get_string_property(self, predicate):
         for triple in self.g.triples((URIRef(self.uri), URIRef(predicate), None)):
             return triple[2].toPython()
         return None
 
-    def setStringProperty(self, predicate, value):
+    def set_string_property(self, predicate, value):
         self.g.remove((URIRef(self.uri), URIRef(predicate), None))
         self.g.add((URIRef(self.uri), URIRef(predicate), Literal(value)))
 
-    def getIntegerProperty(self, predicate):
+    def get_integer_property(self, predicate):
         for triple in self.g.triples((URIRef(self.uri), URIRef(predicate), None)):
             return triple[2].toPython()
         return None
 
-    def setIntegerProperty(self, predicate, value):
+    def set_integer_property(self, predicate, value):
         self.g.remove((URIRef(self.uri), URIRef(predicate), None))
         self.g.add((URIRef(self.uri), URIRef(predicate), Literal(value)))
 
-    def setUriProperty(self, predicate, value):
+    def set_uri_property(self, predicate, value):
         self.g.remove((URIRef(self.uri), URIRef(predicate), None))
         self.g.add((URIRef(self.uri), URIRef(predicate), URIRef(value)))
 
-    def insertUriProperty(self, predicate, value):
+    def insert_uri_property(self, predicate, value):
         self.g.add((URIRef(self.uri), URIRef(predicate), URIRef(value)))
 
-    def getUriProperty(self, predicate):
+    def get_uri_property(self, predicate):
         for triple in self.g.triples((URIRef(self.uri), URIRef(predicate), None)):
             return triple[2].toPython()
         return None
 
-    def getUriProperties(self, predicate):
+    def get_uri_properties(self, predicate):
         return [triple[2].toPython() for triple in self.g.triples((URIRef(self.uri), URIRef(predicate), None))]
 
-    def insertProperties(self, properties):
+    def insert_properties(self, properties):
         for predicate in properties:
             obj = properties[predicate]
             self.g.add((URIRef(self.uri), URIRef(predicate), obj))
 
-    def setIdentifiedProperty(self, predicate, value):
+    def set_identified_property(self, predicate, value):
         if isinstance(value, S2Identified):
-            self.setUriProperty(URIRef(predicate), URIRef(value.uri))
+            self.set_uri_property(URIRef(predicate), URIRef(value.uri))
         elif isinstance(value, str):
-            self.setUriProperty(URIRef(predicate), URIRef(value))
+            self.set_uri_property(URIRef(predicate), URIRef(value))
         else:
             raise Exception()
 
-    def getIdentifiedProperty(self, predicate):
-        return self.g.uriToFacade(self.getUriProperty(predicate))
+    def get_identified_property(self, predicate):
+        return self.g.uri_to_facade(self.get_uri_property(predicate))
 
-    def insertIdentifiedProperty(self, predicate, value):
+    def insert_identified_property(self, predicate, value):
         if isinstance(value, S2Identified):
-            self.insertUriProperty(URIRef(predicate), URIRef(value.uri))
+            self.insert_uri_property(URIRef(predicate), URIRef(value.uri))
         elif isinstance(value, URIRef):
-            self.insertUriProperty(URIRef(predicate), value)
+            self.insert_uri_property(URIRef(predicate), value)
         elif isinstance(value, str):
-            self.insertUriProperty(URIRef(predicate), URIRef(value))
+            self.insert_uri_property(URIRef(predicate), URIRef(value))
         else:
             print 'you asked me to insert', value, 'but i do not know how'
             raise Exception()
@@ -75,27 +75,27 @@ class S2Identified(Facade):
 
     @property
     def name(self):
-        return self.getStringProperty(Dcterms.title)
+        return self.get_string_property(Dcterms.title)
 
     @name.setter
     def name(self, name):
-        self.setStringProperty(Dcterms.title, name)
+        self.set_string_property(Dcterms.title, name)
 
     @property
-    def displayId(self):
-        return self.getStringProperty(SBOL2.displayId)
+    def display_id(self):
+        return self.get_string_property(SBOL2.display_id)
 
     @property
-    def persistentIdentity(self):
-        return self.getUriProperty(SBOL2.persistentIdentity)
+    def persistent_identity(self):
+        return self.get_uri_property(SBOL2.persistent_identity)
 
     @property
     def version(self):
-        return self.getUriProperty(SBOL2.version)
+        return self.get_uri_property(SBOL2.version)
 
     @property
-    def displayName(self):
+    def display_name(self):
         name = self.name
         if name is not None:
             return name
-        return self.displayId
+        return self.display_id

@@ -1,13 +1,13 @@
-def getDisplayId(uri):
+def get_display_id(uri):
     tokens = uri.split('/')
     return tokens[-2]
 
 
-def getVersion(uri):
+def get_version(uri):
     tokens = uri.split('/')
     return tokens[-1]
 
 
-def getPersistentIdentity(uri):
+def get_persistent_identity(uri):
     tokens = uri.split('/')
     return '/'.join(tokens[:-1])

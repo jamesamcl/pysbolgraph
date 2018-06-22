@@ -9,4 +9,4 @@ class S2GenericLocation(S2Location):
 
     @property
     def orientation(self):
-        return self.getUriProperty(SBOL2.orientation)
+        return self.get_uri_property(SBOL2.orientation)

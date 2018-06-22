@@ -9,8 +9,8 @@ class S2SequenceConstraint(S2Identified):
 
     @property
     def restriction(self):
-        return self.getUriProperty(SBOL2.restriction)
+        return self.get_uri_property(SBOL2.restriction)
 
     @restriction.setter
     def restriction(self, restriction):
-        self.setUriProperty(SBOL2.restriction, restriction)
+        self.set_uri_property(SBOL2.restriction, restriction)

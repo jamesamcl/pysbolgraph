@@ -12,41 +12,41 @@ class S2IdentifiedFactory:
         pass
 
     @staticmethod
-    def createTopLevel(graph, theType, uriPrefix, displayId, name=None, version="1"):
+    def create_top_level(graph, the_type, uri_prefix, display_id, name=None, version="1"):
 
-        uri = graph.generateURI(uriPrefix + displayId + '$n?$/' + version)
+        uri = graph.generate_uri(uri_prefix + display_id + '$n?$/' + version)
 
         print 'uri is ' + uri
 
-        graph.insertProperties(uri, {
-            RDF.type: URIRef(theType),
-            SBOL2.displayId: Literal(CompliantURIs.getDisplayId(uri)),
-            SBOL2.persistentIdentity: URIRef(CompliantURIs.getPersistentIdentity(uri)),
-            SBOL2.version: Literal(CompliantURIs.getVersion(uri))
+        graph.insert_properties(uri, {
+            RDF.type: URIRef(the_type),
+            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
         if name:
-            graph.insertProperties(uri, {Dcterms.title: Literal(name)})
+            graph.insert_properties(uri, {Dcterms.title: Literal(name)})
 
         return S2Identified(graph, uri)
 
     @staticmethod
-    def createChild(graph, theType, parent, displayId, name=None):
+    def create_child(graph, the_type, parent, display_id, name=None):
 
         version = parent.version
 
-        print parent.persistentIdentity, displayId, version
+        print parent.persistent_identity, display_id, version
 
-        uri = graph.generateURI(parent.persistentIdentity + '/' + displayId + '$n?$/' + version)
+        uri = graph.generate_uri(parent.persistent_identity + '/' + display_id + '$n?$/' + version)
 
-        graph.insertProperties(uri, {
-            RDF.type: URIRef(theType),
-            SBOL2.displayId: Literal(CompliantURIs.getDisplayId(uri)),
-            SBOL2.persistentIdentity: URIRef(CompliantURIs.getPersistentIdentity(uri)),
-            SBOL2.version: Literal(CompliantURIs.getVersion(uri))
+        graph.insert_properties(uri, {
+            RDF.type: URIRef(the_type),
+            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
         if name is not None:
-            graph.insertProperties(uri, {Dcterms.title: Literal(name)})
+            graph.insert_properties(uri, {Dcterms.title: Literal(name)})
 
         return S2Identified(graph, uri)

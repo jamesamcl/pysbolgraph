@@ -10,17 +10,17 @@ class S2SequenceAnnotation(S2Identified):
 
     @property
     def roles(self):
-        return self.getUriProperties(SBOL2.role)
+        return self.get_uri_properties(SBOL2.role)
 
-    def hasRole(self, role):
+    def has_role(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
 
-    def addRole(self, role):
-        self.insertIdentifiedProperty(SBOL2.role, URIRef(role))
+    def add_role(self, role):
+        self.insert_identified_property(SBOL2.role, URIRef(role))
 
     @property
     def locations(self):
-        return [self.g.uriToFacade(uri) for uri in self.getUriProperties(SBOL2.location)]
+        return [self.g.uri_to_facade(uri) for uri in self.get_uri_properties(SBOL2.location)]
 
-    def addLocation(self, location):
-        self.insertIdentifiedProperty(SBOL2.location, location)
+    def add_location(self, location):
+        self.insert_identified_property(SBOL2.location, location)

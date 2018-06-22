@@ -11,18 +11,18 @@ class S2Participation(S2Identified):
 
     @property
     def roles(self):
-        return self.getUriProperties(SBOL2.role)
+        return self.get_uri_properties(SBOL2.role)
 
-    def hasRole(self, role):
+    def has_role(self, role):
         return self.g.hasMatch(self.uri, SBOL2.role, URIRef(role))
 
-    def addRole(self, role):
-        self.insertIdentifiedProperty(SBOL2.role, URIRef(role))
+    def add_role(self, role):
+        self.insert_identified_property(SBOL2.role, URIRef(role))
 
     @property
     def participant(self):
-        return self.getIdentifiedProperty(SBOL2.participant)
+        return self.get_identified_property(SBOL2.participant)
 
     @participant.setter
     def participant(self, participant):
-        self.setIdentifiedProperty(SBOL2.participant, participant)
+        self.set_identified_property(SBOL2.participant, participant)
