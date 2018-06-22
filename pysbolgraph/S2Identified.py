@@ -54,6 +54,9 @@ class Facade(object):
         else:
             raise Exception()
 
+    def getIdentifiedProperty(self, predicate):
+        return self.g.uriToFacade(self.getUriProperty(predicate))
+
     def insertIdentifiedProperty(self, predicate, value):
         if isinstance(value, S2Identified):
             self.insertUriProperty(URIRef(predicate), URIRef(value.uri))
