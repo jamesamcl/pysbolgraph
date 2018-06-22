@@ -21,4 +21,4 @@ class S2Sequence(S2Identified):
 
     @elements.setter
     def elements(self, elements):
-        self.setUriProperty(SBOL2.elements, elements)
+        self.setStringProperty(SBOL2.elements, elements)
