@@ -27,7 +27,7 @@ class Facade(object):
         self.g.add( (self.uri, predicate, URIRef(obj)) )
     def insertUriProperty(self, predicate, value):
         self.g.add( (self.uri, predicate, URIRef(obj)) )
-    def getUriProperties(self, predicate):
+    def getUriProperty(self, predicate):
         for triple in self.g.triples( (self.uri, predicate, None) ):
             return triple[2].toPython()
         return None
