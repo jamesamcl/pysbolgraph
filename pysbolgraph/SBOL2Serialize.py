@@ -32,8 +32,8 @@ def serializeSBOL2(g):
 
     for triple in g.triples( (None, RDF.type, None) ):
         subject = triple[0].toPython()
-        type = triple[2].toPython()
-        subject_to_element[subject] = etree.Element(prefixify(type, prefixes, True),
+        theType = triple[2].toPython()
+        subject_to_element[subject] = etree.Element(prefixify(theType, prefixes, True),
             attrib = {
                 QName(rdfNS, 'about'): subject
             }
@@ -42,23 +42,23 @@ def serializeSBOL2(g):
     for triple in g.triples( (None, None, None) ):
         subject = triple[0].toPython()
         predicate = triple[1].toPython()
-        object = triple[2]
+        obj = triple[2]
         element = subject_to_element[subject]
         if predicate == RDF.type:
             continue
         if predicate in ownership_predicates:
-            owned_element = subject_to_element[object.toPython()]
+            owned_element = subject_to_element[obj.toPython()]
             ownership_element = etree.SubElement(element, prefixify(predicate, prefixes, True))
             ownership_element.append(owned_element)
-            owned_elements.add(object.toPython())
+            owned_elements.add(obj.toPython())
             continue
-        if isinstance(object, URIRef):
+        if isinstance(obj, URIRef):
             etree.SubElement(element, prefixify(predicate, prefixes, True), attrib = {
-                QName(rdfNS, 'resource'): object.toPython()
+                QName(rdfNS, 'resource'): obj.toPython()
             })
-        elif isinstance(object, Literal):
+        elif isinstance(obj, Literal):
             elem = etree.SubElement(element, prefixify(predicate, prefixes, True))
-            elem.text = object.toPython()
+            elem.text = obj.toPython()
         else:
             raise Exception()
 
