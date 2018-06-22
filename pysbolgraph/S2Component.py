@@ -5,7 +5,7 @@ from S2Sequence import S2Sequence
 from S2SequenceConstraint import S2SequenceConstraint
 from S2IdentifiedFactory import S2IdentifiedFactory
 
-from terms import SBOL2, Dcterms
+from terms import SBOL2
 
 from rdflib import URIRef
 

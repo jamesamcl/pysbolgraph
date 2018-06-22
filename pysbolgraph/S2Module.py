@@ -5,7 +5,7 @@ from S2Interaction import S2Interaction
 from S2FunctionalComponent import S2FunctionalComponent
 from S2MapsTo import S2MapsTo
 
-from terms import SBOL2, Dcterms
+from terms import SBOL2
 
 from rdflib import URIRef
 

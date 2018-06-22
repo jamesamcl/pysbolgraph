@@ -1,7 +1,7 @@
 
 from S2Location import S2Location
 
-from terms import SBOL2, Dcterms
+from terms import SBOL2
 
 class S2Cut(S2Location):
     def __init__(self, g, uri):

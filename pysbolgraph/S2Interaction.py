@@ -4,7 +4,7 @@ from S2Identified import S2Identified
 from S2Participation import S2Participation
 from S2IdentifiedFactory import S2IdentifiedFactory
 
-from terms import SBOL2, Dcterms
+from terms import SBOL2
 
 class S2Interaction(S2Identified):
     def __init__(self, g, uri):
