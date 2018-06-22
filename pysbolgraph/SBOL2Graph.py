@@ -84,7 +84,7 @@ class SBOL2Graph:
 
     def uriToFacade(self, uri):
         type = self.getType(uri)
-        if type == None:
+        if type is None:
             return None
         if type == SBOL2.ComponentDefinition:
             return S2ComponentDefinition(self, uri)
