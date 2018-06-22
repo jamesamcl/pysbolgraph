@@ -14,8 +14,8 @@ class S2Interaction(S2Identified):
     def type(self):
         return this.getUriProperty(SBOL2.type)
     @type.setter
-    def type(self, type):
-        self.setUriProperty(SBOL2.type, type)
+    def type(self, theType):
+        self.setUriProperty(SBOL2.type, theType)
 
     def createParticipation(self, displayId, participant, role):
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Participation, self, displayId)

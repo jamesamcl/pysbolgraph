@@ -16,10 +16,10 @@ class S2ComponentDefinition(S2Identified):
     @property
     def types(self):
         return self.getUriProperties(SBOL2.type)
-    def hasType(self, type):
-        return self.g.hasMatch(self.uri, SBOL2.type, URIRef(type))
-    def addType(self, type):
-        self.insertProperties({ SBOL2.type: URIRef(type) })
+    def hasType(self, theType):
+        return self.g.hasMatch(self.uri, SBOL2.type, URIRef(theType))
+    def addType(self, theType):
+        self.insertProperties({ SBOL2.type: URIRef(theType) })
 
     @property
     def roles(self):

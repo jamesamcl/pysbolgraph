@@ -25,12 +25,12 @@ class S2ModuleDefinition(S2Identified):
     def modules(self):
         return [ S2Module(self.g, uri) for uri in self.getUriProperties(SBOL2.module) ]
 
-    def createInteraction(self, displayId, type):
-        print 'ci params are', self, displayId, type
+    def createInteraction(self, displayId, theType):
+        print 'ci params are', self, displayId, theType
         print 'self pi and version are', self.persistentIdentity, self.version
         identified = S2IdentifiedFactory.createChild(self.g, SBOL2.Interaction, self, displayId)
         interaction = S2Interaction(self.g, identified.uri)
-        interaction.type = type
+        interaction.type = theType
         return interaction
 
     def createFunctionalComponent(self, displayId, access, definition, direction):

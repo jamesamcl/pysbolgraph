@@ -29,10 +29,10 @@ class SBOL2Graph:
         else:
             return None
 
-    def createComponentDefinition(self, uriPrefix, type, displayId, version="1"):
+    def createComponentDefinition(self, uriPrefix, theType, displayId, version="1"):
         identified = S2IdentifiedFactory.createTopLevel(self, SBOL2.ComponentDefinition, uriPrefix, displayId, None, version)
         cd = S2ComponentDefinition(self, identified.uri)
-        cd.type = type
+        cd.type = theType
         return cd
 
     def createModuleDefinition(self, uriPrefix, displayId, version="1"):
@@ -83,30 +83,30 @@ class SBOL2Graph:
             self.g.add( (URIRef(uri), URIRef(predicate), obj) )
 
     def uriToFacade(self, uri):
-        type = self.getType(uri)
-        if type is None:
+        theType = self.getType(uri)
+        if theType is None:
             return None
-        if type == SBOL2.ComponentDefinition:
+        if theType == SBOL2.ComponentDefinition:
             return S2ComponentDefinition(self, uri)
-        if type == SBOL2.Component:
+        if theType == SBOL2.Component:
             return S2Component(self, uri)
-        if type == SBOL2.SequenceAnnotation:
+        if theType == SBOL2.SequenceAnnotation:
             return S2SequenceAnnotation(self, uri)
-        if type == SBOL2.SequenceConstraint:
+        if theType == SBOL2.SequenceConstraint:
             return S2SequenceConstraint(self, uri)
-        if type == SBOL2.ModuleDefinition:
+        if theType == SBOL2.ModuleDefinition:
             return S2ModuleDefinition(self, uri)
-        if type == SBOL2.Module:
+        if theType == SBOL2.Module:
             return S2Module(self, uri)
-        if type == SBOL2.Sequence:
+        if theType == SBOL2.Sequence:
             return S2Sequence(self, uri)
-        if type == SBOL2.Model:
+        if theType == SBOL2.Model:
             return S2Model(self, uri)
-        if type == SBOL2.Range:
+        if theType == SBOL2.Range:
             return S2Range(self, uri)
-        if type == SBOL2.Cut:
+        if theType == SBOL2.Cut:
             return S2Cut(self, uri)
-        if type == SBOL2.GenericLocation:
+        if theType == SBOL2.GenericLocation:
             return S2GenericLocation(self, uri)
         return None
 
