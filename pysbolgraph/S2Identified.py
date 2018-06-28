@@ -1,6 +1,6 @@
 from rdflib import Literal, URIRef
 
-from terms import SBOL2, Dcterms
+from .terms import SBOL2, Dcterms
 
 
 class Facade(object):
@@ -65,7 +65,7 @@ class Facade(object):
         elif isinstance(value, str):
             self.insert_uri_property(URIRef(predicate), URIRef(value))
         else:
-            print 'you asked me to insert', value, 'but i do not know how'
+            print('you asked me to insert %s but i do not know how' % value)
             raise Exception()
 
 
@@ -83,11 +83,11 @@ class S2Identified(Facade):
 
     @property
     def display_id(self):
-        return self.get_string_property(SBOL2.display_id)
+        return self.get_string_property(SBOL2.displayId)
 
     @property
     def persistent_identity(self):
-        return self.get_uri_property(SBOL2.persistent_identity)
+        return self.get_uri_property(SBOL2.persistentIdentity)
 
     @property
     def version(self):

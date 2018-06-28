@@ -1,11 +1,11 @@
-from S2Identified import S2Identified
-from S2IdentifiedFactory import S2IdentifiedFactory
-from S2Interaction import S2Interaction
-from S2FunctionalComponent import S2FunctionalComponent
-from S2MapsTo import S2MapsTo
-from S2Component import S2ComponentDefinition
+from .S2Identified import S2Identified
+from .S2IdentifiedFactory import S2IdentifiedFactory
+from .S2Interaction import S2Interaction
+from .S2FunctionalComponent import S2FunctionalComponent
+from .S2MapsTo import S2MapsTo
+from .S2Component import S2ComponentDefinition
 
-from terms import SBOL2
+from .terms import SBOL2
 
 from rdflib import URIRef
 
@@ -29,8 +29,8 @@ class S2ModuleDefinition(S2Identified):
         return [S2Module(self.g, uri) for uri in self.get_uri_properties(SBOL2.module)]
 
     def create_interaction(self, display_id, the_type):
-        print 'ci params are', self, display_id, the_type
-        print 'self pi and version are', self.persistent_identity, self.version
+        print('ci params are: %s, %s, %s' %(self, display_id, the_type))
+        print('self pi and version are %s, %s' % (self.persistent_identity, self.version))
         identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Interaction, self, display_id)
         interaction = S2Interaction(self.g, identified.uri)
         interaction.type = the_type

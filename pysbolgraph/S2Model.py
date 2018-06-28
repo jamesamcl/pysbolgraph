@@ -1,4 +1,4 @@
-from S2Identified import S2Identified
+from .S2Identified import S2Identified
 
 
 class S2Model(S2Identified):

@@ -1,6 +1,6 @@
-from S2Identified import S2Identified
+from .S2Identified import S2Identified
 
-from terms import SBOL2
+from .terms import SBOL2
 
 from rdflib import URIRef
 

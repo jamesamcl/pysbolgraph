@@ -1,24 +1,26 @@
 import rdflib
+import requests
+import json
 
 from rdflib import URIRef
 
 from rdflib.namespace import RDF
 
-from terms import SBOL2
+from .terms import SBOL2
 
-from S2Component import S2Component, S2ComponentDefinition
-from S2Module import S2Module, S2ModuleDefinition
-from S2Sequence import S2Sequence
+from .S2Component import S2Component, S2ComponentDefinition
+from .S2Module import S2Module, S2ModuleDefinition
+from .S2Sequence import S2Sequence
 
-from S2IdentifiedFactory import S2IdentifiedFactory
-from S2SequenceAnnotation import S2SequenceAnnotation
-from S2SequenceConstraint import S2SequenceConstraint
-from S2Model import S2Model
-from S2Range import S2Range
-from S2Cut import S2Cut
-from S2GenericLocation import S2GenericLocation
+from .S2IdentifiedFactory import S2IdentifiedFactory
+from .S2SequenceAnnotation import S2SequenceAnnotation
+from .S2SequenceConstraint import S2SequenceConstraint
+from .S2Model import S2Model
+from .S2Range import S2Range
+from .S2Cut import S2Cut
+from .S2GenericLocation import S2GenericLocation
 
-from SBOL2Serialize import serialize_sboll2
+from .SBOL2Serialize import serialize_sboll2
 
 
 class SBOL2Graph:
@@ -132,3 +134,29 @@ class SBOL2Graph:
 
     def serialize_xml(self):
         return serialize_sboll2(self)
+
+    @staticmethod
+    def validate_xml(xml, check_uri_compliance=False, check_completeness=False, check_best_practices=False,
+                     provide_detailed_stack_trace=False):
+
+        # See API docs at http://synbiodex.github.io/SBOL-Validator/#introduction
+        request = {'options': {'language': 'SBOL2',
+                               'test_equality': False,
+                               'check_uri_compliance': check_uri_compliance,
+                               'check_completeness': check_completeness,
+                               'check_best_practices': check_best_practices,
+                               'fail_on_first_error': False,
+                               'provide_detailed_stack_trace': provide_detailed_stack_trace,
+                               'subset_uri': '',
+                               'uri_prefix': '',
+                               'version': '',
+                               'insert_type': False,
+                               'main_file_name': 'main file',
+                               'diff_file_name': 'comparison file',
+                               },
+                   'return_file': True,
+                   'main_file': xml
+                   }
+
+        resp = requests.post("http://www.async.ece.utah.edu/validate/", json=request)
+        return json.dumps(resp.json())

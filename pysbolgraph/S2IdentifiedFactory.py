@@ -1,10 +1,10 @@
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF
-from terms import SBOL2
-from S2Identified import S2Identified
-from terms import Dcterms
+from .terms import SBOL2
+from .S2Identified import S2Identified
+from .terms import Dcterms
 
-import CompliantURIs
+from . import CompliantURIs
 
 
 class S2IdentifiedFactory:
@@ -16,12 +16,10 @@ class S2IdentifiedFactory:
 
         uri = graph.generate_uri(uri_prefix + display_id + '$n?$/' + version)
 
-        print 'uri is ' + uri
-
         graph.insert_properties(uri, {
             RDF.type: URIRef(the_type),
-            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
-            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.displayId: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistentIdentity: URIRef(CompliantURIs.get_persistent_identity(uri)),
             SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
@@ -35,14 +33,14 @@ class S2IdentifiedFactory:
 
         version = parent.version
 
-        print parent.persistent_identity, display_id, version
+        print("%s %s %s" % (parent.persistent_identity, display_id, version))
 
         uri = graph.generate_uri(parent.persistent_identity + '/' + display_id + '$n?$/' + version)
 
         graph.insert_properties(uri, {
             RDF.type: URIRef(the_type),
-            SBOL2.display_id: Literal(CompliantURIs.get_display_id(uri)),
-            SBOL2.persistent_identity: URIRef(CompliantURIs.get_persistent_identity(uri)),
+            SBOL2.displayId: Literal(CompliantURIs.get_display_id(uri)),
+            SBOL2.persistentIdentity: URIRef(CompliantURIs.get_persistent_identity(uri)),
             SBOL2.version: Literal(CompliantURIs.get_version(uri))
         })
 
