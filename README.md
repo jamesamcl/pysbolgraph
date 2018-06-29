@@ -1,8 +1,6 @@
 # PySBOLGraph
 
-PySBOLGraph is a simple Python library to read and write SBOL files.
-
-It should be compatible with both Python 2.7 and Python 3.
+PySBOLGraph is a simple native Python library to read and write [SBOL](http://sbolstandard.org) files, compatible with both Python 2.7 and Python 3.
 
 Install using ``python setup.py install``
 
