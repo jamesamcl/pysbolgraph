@@ -35,6 +35,11 @@ class SBOL2Graph:
         return [S2ComponentDefinition(self.g, triple[0]) for triple in
                 self.g.triples((None, RDF.type, SBOL2.ComponentDefinition))]
 
+    @property
+    def module_definitions(self):
+        return [S2ModuleDefinition(self.g, triple[0]) for triple in
+                self.g.triples((None, RDF.type, SBOL2.ModuleDefinition))]
+
 
     @property
     def sequences(self):
