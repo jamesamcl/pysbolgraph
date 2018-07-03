@@ -25,6 +25,10 @@ class S2ModuleDefinition(S2Identified):
         self.insert_properties({SBOL2.role: URIRef(role)})
 
     @property
+    def functional_components(self):
+        return [S2FunctionalComponent(self.g, uri) for uri in self.get_uri_properties(SBOL2.functionalComponent)]
+
+    @property
     def modules(self):
         return [S2Module(self.g, uri) for uri in self.get_uri_properties(SBOL2.module)]
 

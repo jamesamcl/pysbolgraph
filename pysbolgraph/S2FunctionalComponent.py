@@ -1,4 +1,5 @@
 from .S2Identified import S2Identified
+from .S2Component import S2ComponentDefinition
 
 from .terms import SBOL2
 
@@ -9,7 +10,7 @@ class S2FunctionalComponent(S2Identified):
 
     @property
     def definition(self):
-        return self.get_identified_property(SBOL2.definition)
+        return S2ComponentDefinition(self.g, self.get_uri_property(SBOL2.definition))
 
     @definition.setter
     def definition(self, definition):
