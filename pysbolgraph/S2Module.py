@@ -29,6 +29,10 @@ class S2ModuleDefinition(S2Identified):
         return [S2FunctionalComponent(self.g, uri) for uri in self.get_uri_properties(SBOL2.functionalComponent)]
 
     @property
+    def interactions(self):
+        return [S2Interaction(self.g, uri) for uri in self.get_uri_properties(SBOL2.interaction)]
+
+    @property
     def modules(self):
         return [S2Module(self.g, uri) for uri in self.get_uri_properties(SBOL2.module)]
 
