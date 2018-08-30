@@ -8,4 +8,4 @@ The file ``crispr.py`` reproduces the CRISPR example that is also used in the tu
 
 For a more powerful library with features such as automated sequence assembly, check out [pysbol](https://github.com/SynBioDex/pySBOL).
 
-For a JavaScript/TypeScript version of this library, check out [the original sbolgraph](https://github.com/udp/pysbolgraph).
+For a JavaScript/TypeScript version of this library, check out [the original sbolgraph](https://github.com/udp/sbolgraph).
