@@ -64,6 +64,7 @@ Biopax = ClosedNamespace(
         "DnaRegion",
         "RnaRegion",
         "Protein",
-        "Complex"
+        "Complex",
+        "SmallMolecule"
     ]
 )
