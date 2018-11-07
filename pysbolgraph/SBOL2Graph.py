@@ -57,7 +57,7 @@ class SBOL2Graph:
         identified = S2IdentifiedFactory.create_top_level(self, SBOL2.ComponentDefinition, uri_prefix, display_id, None,
                                                           version)
         cd = S2ComponentDefinition(self, identified.uri)
-        cd.type = the_type
+        cd.add_type(the_type)
         return cd
 
     def create_module_definition(self, uri_prefix, display_id, version="1"):
