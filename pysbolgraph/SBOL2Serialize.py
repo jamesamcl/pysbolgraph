@@ -57,7 +57,7 @@ def serialize_sboll2(g):
             })
         elif isinstance(obj, Literal):
             elem = etree.SubElement(element, prefixify(predicate, prefixes, True))
-            elem.text = obj.toPython()
+            elem.text = obj
         else:
             raise Exception()
 

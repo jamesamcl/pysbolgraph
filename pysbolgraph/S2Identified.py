@@ -26,6 +26,15 @@ class Facade(object):
         self.g.remove((URIRef(self.uri), URIRef(predicate), None))
         self.g.add((URIRef(self.uri), URIRef(predicate), Literal(value)))
 
+    def get_double_property(self, predicate):
+        for triple in self.g.triples((URIRef(self.uri), URIRef(predicate), None)):
+            return triple[2].toPython()
+        return None
+
+    def set_double_property(self, predicate, value):
+        self.g.remove((URIRef(self.uri), URIRef(predicate), None))
+        self.g.add((URIRef(self.uri), URIRef(predicate), Literal(value)))
+
     def set_uri_property(self, predicate, value):
         self.g.remove((URIRef(self.uri), URIRef(predicate), None))
         self.g.add((URIRef(self.uri), URIRef(predicate), URIRef(value)))
