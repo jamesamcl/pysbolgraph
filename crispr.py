@@ -108,7 +108,7 @@ EYFP_gene = g.create_component_definition(uriPrefix, "EYFP_gene", Biopax.DnaRegi
 EYFP_gene.create_sequence_constraint("precedes_constraint", SBOL2.precedes, CRP_b, EYFP_cds)
 
 CRPb_circuit = g.create_module_definition(uriPrefix, "CRPb_characterization_circuit")
-CRPb_circuit.create_functional_component("EYFP", SBOL2.private, "EYFP", SBOL2.directionNone)
+CRPb_circuit.create_functional_component("EYFP", SBOL2.private, "EYFP", SBOL2.none)
 
 Template_Module = CRPb_circuit.create_module("CRISPR_Template", crispr_template)
 Template_Module.create_maps_to("cas9m_BFP_map", SBOL2.useLocal, "cas9m_BFP", "cas9_generic")

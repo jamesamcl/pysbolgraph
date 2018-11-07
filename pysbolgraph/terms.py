@@ -52,7 +52,7 @@ SBOL2 = ClosedNamespace(
         "remote",
         "private",
         "public",
-        "directionNone",
+        "none",
         "useLocal",
         "useRemote",
     ]
