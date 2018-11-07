@@ -37,6 +37,13 @@ class S2ComponentDefinition(S2Identified):
     def components(self):
         return [S2Component(self.g, uri) for uri in self.get_uri_properties(SBOL2.component)]
 
+    def create_component(self, display_id, definition):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Component, self, display_id)
+        new_component = S2Component(self.g, identified.uri)
+        new_component.definition = definition
+        self.insert_uri_property(SBOL2.component, new_component.uri)
+        return new_component
+
     @property
     def sequence_annotations(self):
         return [S2SequenceAnnotation(self.g, uri) for uri in self.get_uri_properties(SBOL2.sequenceAnnotation)]
