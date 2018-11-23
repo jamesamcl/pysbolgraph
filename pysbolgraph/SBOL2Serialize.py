@@ -43,7 +43,7 @@ def serialize_sboll2(g):
         predicate = triple[1].toPython()
         obj = triple[2]
         element = subject_to_element[subject]
-        if predicate == RDF.type:
+        if predicate == RDF.type.toPython():
             continue
         if predicate in ownership_predicates:
             owned_element = subject_to_element[obj.toPython()]
