@@ -117,7 +117,7 @@ Template_Module.create_maps_to("cas9m_BFP_gRNA_map", SBOL2.useLocal, "cas9m_BFP_
 Template_Module.create_maps_to("EYFP_map", SBOL2.useLocal, "EYFP", "target")
 Template_Module.create_maps_to("EYFP_gene_map", SBOL2.useLocal, "EYFP_gene", "target_gene")
 
-xml_string = g.serialize_xml()
+xml_string = g.serialize_xml().decode("utf-8")
 
 print(xml_string)
 print("\n"*5)
