@@ -8,18 +8,36 @@ from rdflib import URIRef, Literal
 rdfNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 sbolNS = "http://sbols.org/v2#"
 
-ownership_predicates = {
-    sbolNS + 'component',
-    sbolNS + 'module',
-    sbolNS + 'mapsTo',
-    sbolNS + 'interaction',
-    sbolNS + 'participation',
-    sbolNS + 'functionalComponent',
-    sbolNS + 'sequenceConstraint',
-    sbolNS + 'location',
-    sbolNS + 'sequenceAnnotation'
-}
+def is_ownership_relation(g, triple):
+    subject = triple[0].toPython()
+    predicate = triple[1].toPython()
+    obj = triple[2]
 
+    ownership_predicates = {
+        sbolNS + 'module',
+        sbolNS + 'mapsTo',
+        sbolNS + 'interaction',
+        sbolNS + 'participation',
+        sbolNS + 'functionalComponent',
+        sbolNS + 'sequenceConstraint',
+        sbolNS + 'location',
+        sbolNS + 'sequenceAnnotation'
+    }
+
+    if predicate in ownership_predicates:
+        return True
+    
+    # SBOL2 reuses the "component" predicate as both an ownership predicate (in
+    # the case of ComponentDefinition) and a referencing one (in the case of
+    # SequenceAnnotation).
+    #
+    if predicate == sbolNS + 'component':
+        if (triple[0], RDF.type, URIRef(sbolNS + 'SequenceAnnotation')) in g.g:
+            return False
+        else:
+            return True
+
+    return False
 
 def serialize_sboll2(g):
     prefixes = dict()
@@ -33,11 +51,16 @@ def serialize_sboll2(g):
     for triple in g.triples((None, RDF.type, None)):
         subject = triple[0].toPython()
         the_type = triple[2].toPython()
-        subject_to_element[subject] = etree.Element(prefixify(the_type, prefixes, True),
-                                                    attrib={
-                                                        QName(rdfNS, 'about'): subject
-                                                    }
-                                                    )
+        if subject in subject_to_element:
+            etree.SubElement(subject_to_element[subject], prefixify(RDF.type, prefixes, True), attrib={
+                QName(rdfNS, 'resource'): the_type
+            })
+        else:
+            subject_to_element[subject] = etree.Element(prefixify(the_type, prefixes, True),
+                                                        attrib={
+                                                            QName(rdfNS, 'about'): subject
+                                                        }
+                                                        )
 
     for triple in g.triples((None, None, None)):
         subject = triple[0].toPython()
@@ -46,7 +69,7 @@ def serialize_sboll2(g):
         element = subject_to_element[subject]
         if predicate == RDF.type.toPython():
             continue
-        if predicate in ownership_predicates:
+        if is_ownership_relation(g, triple):
             owned_element = subject_to_element[obj.toPython()]
             ownership_element = etree.SubElement(element, prefixify(predicate, prefixes, True))
             ownership_element.append(owned_element)
