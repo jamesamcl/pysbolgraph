@@ -12,11 +12,12 @@ ownership_predicates = {
     sbolNS + 'component',
     sbolNS + 'module',
     sbolNS + 'mapsTo',
-    sbolNS + 'mapsTo',
     sbolNS + 'interaction',
     sbolNS + 'participation',
     sbolNS + 'functionalComponent',
-    sbolNS + 'sequenceConstraint'
+    sbolNS + 'sequenceConstraint',
+    sbolNS + 'location',
+    sbolNS + 'sequenceAnnotation'
 }
 
 
