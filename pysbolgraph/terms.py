@@ -55,6 +55,8 @@ SBOL2 = ClosedNamespace(
         "none",
         "useLocal",
         "useRemote",
+        "merge",
+        "verifyIdentical"
     ]
 )
 

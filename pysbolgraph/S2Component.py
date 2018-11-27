@@ -3,6 +3,7 @@ from .S2SequenceAnnotation import S2SequenceAnnotation
 from .S2Sequence import S2Sequence
 from .S2SequenceConstraint import S2SequenceConstraint
 from .S2IdentifiedFactory import S2IdentifiedFactory
+from .S2MapsTo import S2MapsTo
 
 from .terms import SBOL2
 
@@ -72,3 +73,13 @@ class S2Component(S2Identified):
     @property
     def definition(self):
         return S2ComponentDefinition(self.g, self.get_uri_property(SBOL2.definition))
+
+    def create_maps_to(self, display_id, refinement, local, remote):
+        identified = S2IdentifiedFactory.create_child(self.g, SBOL2.MapsTo, self, display_id)
+        maps_to = S2MapsTo(self.g, identified.uri)
+        maps_to.local = local
+        maps_to.remote = remote
+        maps_to.refinement = refinement
+        self.insert_uri_property(SBOL2.mapsTo, maps_to.uri)
+        return maps_to
+
