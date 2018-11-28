@@ -70,7 +70,7 @@ class S2ComponentDefinition(S2Identified):
     @property
     def instances(self):
         triples = list(self.g.triples((None, SBOL2.definition, URIRef(self.uri))))
-        return [S2Component(self.g, triple[0]) for triple in triples]
+        return [S2Component(self.g, triple[0].toPython()) for triple in triples]
 
 class S2Component(S2Identified):
     def __init__(self, g, uri):
@@ -106,7 +106,7 @@ class S2Component(S2Identified):
         triples = list(self.g.triples((None, SBOL2.component, URIRef(self.uri))))
         for triple in triples:
             if (triple[0], RDF.type, SBOL2.ComponentDefinition) in self.g.g:
-                return S2ComponentDefinition(self.g, triple[0])
+                return S2ComponentDefinition(self.g, triple[0].toPython())
         raise Exception('component not contained by a definition?')
         
 
