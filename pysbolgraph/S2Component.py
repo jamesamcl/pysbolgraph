@@ -8,6 +8,7 @@ from .S2MapsTo import S2MapsTo
 from .terms import SBOL2
 
 from rdflib import URIRef
+from rdflib.namespace import RDF
 
 
 class S2ComponentDefinition(S2Identified):
@@ -42,6 +43,7 @@ class S2ComponentDefinition(S2Identified):
         identified = S2IdentifiedFactory.create_child(self.g, SBOL2.Component, self, display_id)
         new_component = S2Component(self.g, identified.uri)
         new_component.definition = definition
+        new_component.access = SBOL2.public
         self.insert_uri_property(SBOL2.component, new_component.uri)
         return new_component
 
@@ -65,6 +67,10 @@ class S2ComponentDefinition(S2Identified):
         self.insert_uri_property(SBOL2.sequenceConstraint, sc.uri)
         return sc
 
+    @property
+    def instances(self):
+        triples = list(self.g.triples((None, SBOL2.definition, URIRef(self.uri))))
+        return [S2Component(self.g, triple[0]) for triple in triples]
 
 class S2Component(S2Identified):
     def __init__(self, g, uri):
@@ -74,6 +80,10 @@ class S2Component(S2Identified):
     def definition(self):
         return S2ComponentDefinition(self.g, self.get_uri_property(SBOL2.definition))
 
+    @definition.setter
+    def definition(self, definition):
+        self.set_uri_property(SBOL2.definition, definition.uri)
+
     def create_maps_to(self, display_id, refinement, local, remote):
         identified = S2IdentifiedFactory.create_child(self.g, SBOL2.MapsTo, self, display_id)
         maps_to = S2MapsTo(self.g, identified.uri)
@@ -82,4 +92,22 @@ class S2Component(S2Identified):
         maps_to.refinement = refinement
         self.insert_uri_property(SBOL2.mapsTo, maps_to.uri)
         return maps_to
+
+    @property
+    def access(self):
+        return self.get_uri_property(SBOL2.access)
+
+    @access.setter
+    def access(self, access):
+        self.set_uri_property(SBOL2.access, access)
+
+    @property
+    def containing_component_definition(self):
+        triples = list(self.g.triples((None, SBOL2.component, URIRef(self.uri))))
+        for triple in triples:
+            if (triple[0], RDF.type, SBOL2.ComponentDefinition) in self.g.g:
+                return S2ComponentDefinition(self.g, triple[0])
+        raise Exception('component not contained by a definition?')
+        
+
 
