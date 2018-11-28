@@ -107,7 +107,7 @@ class S2Component(S2Identified):
         for triple in triples:
             if (triple[0], RDF.type, SBOL2.ComponentDefinition) in self.g.g:
                 return S2ComponentDefinition(self.g, triple[0].toPython())
-        raise Exception('component not contained by a definition?')
+        raise Exception('component ' + self.uri + ' not contained by a definition?')
         
 
 
