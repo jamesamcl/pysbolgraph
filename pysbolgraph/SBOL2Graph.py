@@ -6,21 +6,19 @@ from rdflib import URIRef
 
 from rdflib.namespace import RDF
 
-from .terms import SBOL2
+from utils.meta.terms import SBOL2
 
-from .S2Component import S2Component, S2ComponentDefinition
-from .S2Module import S2Module, S2ModuleDefinition
-from .S2Sequence import S2Sequence
-
-from .S2IdentifiedFactory import S2IdentifiedFactory
-from .S2SequenceAnnotation import S2SequenceAnnotation
-from .S2SequenceConstraint import S2SequenceConstraint
-from .S2Model import S2Model
-from .S2Range import S2Range
-from .S2Cut import S2Cut
-from .S2GenericLocation import S2GenericLocation
-
-from .SBOL2Serialize import serialize_sboll2
+from S2Component import S2Component, S2ComponentDefinition
+from S2Module import S2Module, S2ModuleDefinition
+from utils.S2Sequence import S2Sequence
+from utils.S2IdentifiedFactory import S2IdentifiedFactory
+from utils.S2SequenceAnnotation import S2SequenceAnnotation
+from utils.S2SequenceConstraint import S2SequenceConstraint
+from utils.S2Model import S2Model
+from utils.S2Range import S2Range
+from utils.S2Cut import S2Cut
+from utils.S2Location import S2GenericLocation
+from utils.SBOL2Serialize import serialize_sboll2
 
 
 class SBOL2Graph:

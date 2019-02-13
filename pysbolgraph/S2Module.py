@@ -1,11 +1,11 @@
-from .S2Identified import S2Identified
-from .S2IdentifiedFactory import S2IdentifiedFactory
-from .S2Interaction import S2Interaction
-from .S2FunctionalComponent import S2FunctionalComponent
-from .S2MapsTo import S2MapsTo
-from .S2Component import S2ComponentDefinition
+from utils.S2Identified import S2Identified
+from utils.S2IdentifiedFactory import S2IdentifiedFactory
+from S2Interaction import S2Interaction
+from S2FunctionalComponent import S2FunctionalComponent
+from utils.S2MapsTo import S2MapsTo
+from S2Component import S2ComponentDefinition
 
-from .terms import SBOL2
+from utils.meta.terms import SBOL2
 
 from rdflib import URIRef
 

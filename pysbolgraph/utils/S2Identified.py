@@ -1,6 +1,6 @@
 from rdflib import Literal, URIRef
 
-from .terms import SBOL2, Dcterms
+from meta.terms import SBOL2, Dcterms
 
 
 class Facade(object):

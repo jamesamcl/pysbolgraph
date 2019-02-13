@@ -1,11 +1,11 @@
-from .S2Identified import S2Identified
-from .S2SequenceAnnotation import S2SequenceAnnotation
-from .S2Sequence import S2Sequence
-from .S2SequenceConstraint import S2SequenceConstraint
-from .S2IdentifiedFactory import S2IdentifiedFactory
-from .S2MapsTo import S2MapsTo
+from utils.S2Identified import S2Identified
+from utils.S2SequenceAnnotation import S2SequenceAnnotation
+from utils.S2Sequence import S2Sequence
+from utils.S2SequenceConstraint import S2SequenceConstraint
+from utils.S2IdentifiedFactory import S2IdentifiedFactory
+from utils.S2MapsTo import S2MapsTo
 
-from .terms import SBOL2
+from utils.meta.terms import SBOL2
 
 from rdflib import URIRef
 from rdflib.namespace import RDF
