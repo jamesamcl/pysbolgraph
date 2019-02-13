@@ -1,11 +1,9 @@
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF
-from .terms import SBOL2
-from .S2Identified import S2Identified
-from .terms import Dcterms
+from meta.terms import SBOL2, Dcterms
+from S2Identified import S2Identified
 
-from . import CompliantURIs
-
+from meta import CompliantURIs
 
 class S2IdentifiedFactory:
     def __init__(self):

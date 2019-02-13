@@ -1,9 +1,9 @@
-from .S2Identified import S2Identified
-from .S2Component import S2ComponentDefinition
-from .S2IdentifiedFactory import S2IdentifiedFactory
-from .S2MapsTo import S2MapsTo
+from utils.S2Identified import S2Identified
+from S2Component import S2ComponentDefinition
+from utils.S2IdentifiedFactory import S2IdentifiedFactory
+from utils.S2MapsTo import S2MapsTo
 
-from .terms import SBOL2
+from utils.meta.terms import SBOL2
 
 
 class S2FunctionalComponent(S2Identified):

@@ -1,8 +1,8 @@
-from .S2Identified import S2Identified
-from .S2Participation import S2Participation
-from .S2IdentifiedFactory import S2IdentifiedFactory
+from utils.S2Identified import S2Identified
+from utils.S2Participation import S2Participation
+from utils.S2IdentifiedFactory import S2IdentifiedFactory
 
-from .terms import SBOL2
+from utils.meta.terms import SBOL2
 
 
 class S2Interaction(S2Identified):
