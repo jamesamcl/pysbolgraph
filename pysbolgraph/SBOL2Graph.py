@@ -7,6 +7,7 @@ from rdflib import URIRef
 from rdflib.namespace import RDF
 
 from .terms import SBOL2
+from .terms import Prov
 
 from .S2Component import S2Component, S2ComponentDefinition
 from .S2Module import S2Module, S2ModuleDefinition
@@ -19,6 +20,13 @@ from .S2Model import S2Model
 from .S2Range import S2Range
 from .S2Cut import S2Cut
 from .S2GenericLocation import S2GenericLocation
+from .S2Experiment import S2Experiment
+from .S2ExperimentalData import S2ExperimentalData
+from .S2ProvActivity import S2ProvActivity
+from .S2ProvAgent import S2ProvAgent
+from .S2ProvAssociation import S2ProvAssociation
+from .S2ProvPlan import S2ProvPlan
+from .S2ProvUsage import S2ProvUsage
 
 from .SBOL2Serialize import serialize_sboll2
 
@@ -135,6 +143,20 @@ class SBOL2Graph:
             return S2Cut(self, uri)
         if the_type == SBOL2.GenericLocation:
             return S2GenericLocation(self, uri)
+        if the_type == SBOL2.Experiment:
+            return S2Experiment(self, uri)
+        if the_type == SBOL2.ExperimentalData:
+            return S2ExperimentalData(self, uri)
+        if the_type == Prov.Activity:
+            return S2ProvActivity(self, uri)
+        if the_type == Prov.Agent:
+            return S2ProvAgent(self, uri)
+        if the_type == Prov.Association:
+            return S2ProvAssociation(self, uri)
+        if the_type == Prov.Plan:
+            return S2ProvPlan(self, uri)
+        if the_type == Prov.Usage:
+            return S2ProvUsage(self, uri)
         return None
 
     def serialize_xml(self):

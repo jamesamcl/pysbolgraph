@@ -18,10 +18,13 @@ SBOL2 = ClosedNamespace(
         "Module",
         "Interaction",
         "Participation",
+        "Model",
         "MapsTo",
         "Sequence",
         "SequenceConstraint",
         "FunctionalComponent",
+        "Experiment",
+        "ExperimentalData",
 
         # predicates
         "component",
@@ -45,6 +48,17 @@ SBOL2 = ClosedNamespace(
         "encoding",
         "elements",
         "restriction",
+        "model",
+        "framework",
+        "source",
+        "language",
+        "attachment",
+        "format",
+        "hash",
+        "size",
+        "built",
+        "experimentalData",
+        "sourceLocation",
 
         # terms
         "precedes",
@@ -56,7 +70,11 @@ SBOL2 = ClosedNamespace(
         "useLocal",
         "useRemote",
         "merge",
-        "verifyIdentical"
+        "verifyIdentical",
+        "design",
+        "build",
+        "test",
+        "learn"
     ]
 )
 
@@ -68,5 +86,32 @@ Biopax = ClosedNamespace(
         "Protein",
         "Complex",
         "SmallMolecule"
+    ]
+)
+
+Prov = ClosedNamespace(
+    uri=URIRef("http://www.w3.org/ns/prov#"),
+    terms=[
+
+        # types
+        "Agent",
+        "Association",
+        "Activity",
+        "Usage",
+        "Plan",
+        "Usage",
+
+        # predicates
+        "wasDerivedFrom",
+        "wasGeneratedBy",
+        "qualifiedAssociation",
+        "qualifiedUsage",
+        "startedAtTime",
+        "endedAtTime",
+        "wasInformedBy",
+        "agent",
+        "entity",
+        "hadRole",
+        "hadPlan"
     ]
 )
