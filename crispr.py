@@ -15,29 +15,29 @@ target = g.create_component_definition(uriPrefix, "target", Biopax.Protein)
 crispr_template = g.create_module_definition(uriPrefix, "CRISPR_Template")
 
 cas9_complex_formation = crispr_template.create_interaction("cas9_complex_formation",
-                                                            "http://identifiers.org/biomodels.sbo/SBO:00000177")
+                                                            "http://identifiers.org/biomodels.sbo/SBO:0000177")
 
 cas9_complex_formation.create_participation("participant_cas9_generic", cas9_generic,
-                                            "http://identifiers.org/biomodels.sbo/SBO:00000010")
+                                            "http://identifiers.org/biomodels.sbo/SBO:0000010")
 cas9_complex_formation.create_participation("participant_gRNA_generic", gRNA_generic,
-                                            "http://identifiers.org/biomodels.sbo/SBO:00000010")
+                                            "http://identifiers.org/biomodels.sbo/SBO:0000010")
 cas9_complex_formation.create_participation("participant_cas9_gRNA_complex", cas9_gRNA_complex,
-                                            "http://identifiers.org/biomodels.sbo/SBO:00000011")
+                                            "http://identifiers.org/biomodels.sbo/SBO:0000011")
 
 # Production of target from target gene
 eyfp_production = crispr_template.create_interaction("target_production",
-                                                     "http://identifiers.org/biomodels.sbo/SBO:00000589")
+                                                     "http://identifiers.org/biomodels.sbo/SBO:0000589")
 eyfp_production.create_participation("participant_target_gene", target_gene,
-                                     "http://identifiers.org/biomodels.sbo/SBO:00000598")
-eyfp_production.create_participation("participant_target", target, "http://identifiers.org/biomodels.sbo/SBO:00000011")
+                                     "http://identifiers.org/biomodels.sbo/SBO:0000598")
+eyfp_production.create_participation("participant_target", target, "http://identifiers.org/biomodels.sbo/SBO:0000011")
 
 # Inhibition of target by cas9m_BFP_gRNA
 target_generic_gene_inhibition = crispr_template.create_interaction("target_gene_inhibition",
-                                                                    "http://identifiers.org/biomodels.sbo/SBO:00000169")
+                                                                    "http://identifiers.org/biomodels.sbo/SBO:0000169")
 target_generic_gene_inhibition.create_participation("participant_cas9_gRNA_complex", "cas9_gRNA_complex",
-                                                    "http://identifiers.org/biomodels.sbo/SBO:00000020")
+                                                    "http://identifiers.org/biomodels.sbo/SBO:0000020")
 target_generic_gene_inhibition.create_participation("participant_target_gene", "target_gene",
-                                                    "http://identifiers.org/biomodels.sbo/SBO:00000598")
+                                                    "http://identifiers.org/biomodels.sbo/SBO:0000598")
 
 # Create Sequence for CRa_U6 promoter
 CRa_U6_seq_elements = "GGTTTACCGAGCTCTTATTGGTTTTCAAACTTCATTGACTGTGCC" + \
@@ -98,11 +98,11 @@ CRP_b_seq_elements = "GCTCCGAATTTCTCGACAGATCTCATGTGATTACGCCAAGCTACG" + \
 g.create_sequence(uriPrefix, "CRP_b_seq", CRP_b_seq_elements, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 
 CRP_b = g.create_component_definition(uriPrefix, "CRP_b", Biopax.DnaRegion)
-CRP_b.add_role("http://identifiers.org/so/SO:00000167")  # fix me
+CRP_b.add_role("http://identifiers.org/so/SO:0000167")  # fix me
 CRP_b.add_sequence(CRP_b)
 
 EYFP_cds = g.create_component_definition(uriPrefix, "EYFP_cds", Biopax.DnaRegion)
-EYFP_cds.add_role("http://identifiers.org/so/SO:00000167")  # fix me
+EYFP_cds.add_role("http://identifiers.org/so/SO:0000167")  # fix me
 
 EYFP_gene = g.create_component_definition(uriPrefix, "EYFP_gene", Biopax.DnaRegion)
 EYFP_gene.create_sequence_constraint("precedes_constraint", SBOL2.precedes, CRP_b, EYFP_cds)
@@ -117,6 +117,8 @@ Template_Module.create_maps_to("cas9m_BFP_gRNA_map", SBOL2.useLocal, "cas9m_BFP_
 Template_Module.create_maps_to("EYFP_map", SBOL2.useLocal, "EYFP", "target")
 Template_Module.create_maps_to("EYFP_gene_map", SBOL2.useLocal, "EYFP_gene", "target_gene")
 
+
+# TODO  fixbug:string that you're trying to parse as JSON it's not parsing
 xml_string = g.serialize_xml().decode("utf-8")
 
 print(xml_string)
