@@ -8,6 +8,7 @@ from rdflib.namespace import RDF
 
 from .terms import SBOL2
 from .terms import Prov
+from .terms import Measure
 
 from .S2Component import S2Component, S2ComponentDefinition
 from .S2Module import S2Module, S2ModuleDefinition
@@ -27,6 +28,7 @@ from .S2ProvAgent import S2ProvAgent
 from .S2ProvAssociation import S2ProvAssociation
 from .S2ProvPlan import S2ProvPlan
 from .S2ProvUsage import S2ProvUsage
+from .S2Measure import S2Measure
 
 from .SBOL2Serialize import serialize_sboll2
 
@@ -157,6 +159,8 @@ class SBOL2Graph:
             return S2ProvPlan(self, uri)
         if the_type == Prov.Usage:
             return S2ProvUsage(self, uri)
+        if the_type == Measure.Measure:
+            return S2Measure(self, uri)
         return None
 
     def serialize_xml(self):
