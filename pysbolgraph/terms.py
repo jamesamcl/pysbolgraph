@@ -115,3 +115,16 @@ Prov = ClosedNamespace(
         "hadPlan"
     ]
 )
+
+Measure = ClosedNamespace(
+    uri=URIRef("http://www.ontology-of-units-of-measure.org/resource/om-2/"),
+    terms=[
+
+        # types
+        "Measure",
+
+        # predicates
+        "hasNumericalValue",
+        "hasUnit"
+    ]
+)

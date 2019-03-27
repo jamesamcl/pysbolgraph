@@ -109,5 +109,11 @@ class S2Component(S2Identified):
                 return S2ComponentDefinition(self.g, triple[0].toPython())
         raise Exception('component ' + self.uri + ' not contained by a definition?')
         
+    @property
+    def measure(self):
+        return self.get_identified_property(SBOL2.measure)
 
+    @measure.setter
+    def measure(self, measure):
+        self.set_identified_property(SBOL2.measure, measure)
 

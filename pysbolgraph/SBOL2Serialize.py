@@ -21,7 +21,8 @@ def is_ownership_relation(g, triple):
         sbolNS + 'functionalComponent',
         sbolNS + 'sequenceConstraint',
         sbolNS + 'location',
-        sbolNS + 'sequenceAnnotation'
+        sbolNS + 'sequenceAnnotation',
+        sbolNS + 'measure'
     }
 
     if predicate in ownership_predicates:

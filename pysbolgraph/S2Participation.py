@@ -26,3 +26,11 @@ class S2Participation(S2Identified):
     @participant.setter
     def participant(self, participant):
         self.set_identified_property(SBOL2.participant, participant)
+
+    @property
+    def measure(self):
+        return self.get_identified_property(SBOL2.measure)
+
+    @measure.setter
+    def measure(self, measure):
+        self.set_identified_property(SBOL2.measure, measure)

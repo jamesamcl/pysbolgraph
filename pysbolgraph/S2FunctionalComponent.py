@@ -43,3 +43,12 @@ class S2FunctionalComponent(S2Identified):
         self.insert_uri_property(SBOL2.mapsTo, maps_to.uri)
         return maps_to
 
+    @property
+    def measure(self):
+        return self.get_identified_property(SBOL2.measure)
+
+    @measure.setter
+    def measure(self, measure):
+        self.set_identified_property(SBOL2.measure, measure)
+
+    

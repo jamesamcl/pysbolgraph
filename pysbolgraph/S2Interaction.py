@@ -28,3 +28,13 @@ class S2Interaction(S2Identified):
         participation.add_role(role)
         self.insert_uri_property(SBOL2.participation, participation.uri)
         return participation
+
+    @property
+    def measure(self):
+        return self.get_identified_property(SBOL2.measure)
+
+    @measure.setter
+    def measure(self, measure):
+        self.set_identified_property(SBOL2.measure, measure)
+
+    
