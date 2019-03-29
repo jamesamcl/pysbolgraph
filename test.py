@@ -16,7 +16,7 @@ def load(f):
 files = glob('SBOLTestSuite/SBOL2/*.xml')
 
 for file in files:
-    print(file)
+    print('🐍🐍🐍 ' + file)
     g = SBOL2Graph()
     g.load(file)
 
@@ -55,10 +55,7 @@ for file in files:
     else:
         print('❌ NOT valid')
 
-    if r['equal']:
-        print('✅ Equal')
-    else:
-        print('❌ NOT equal')
-
     for e in r['errors']:
-        print('    ' + e)
+        if "Namespace" in e:
+            continue
+        print('⚠️  ' + e)
