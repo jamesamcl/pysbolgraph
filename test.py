@@ -22,8 +22,8 @@ for file in files:
 
     new_filename = "out/" + file
 
-    f = open(new_filename, "w+")
-    f.write(str(g.serialize_xml()))
+    f = open(new_filename, "wb+")
+    f.write(g.serialize_xml())
     f.close()
 
     request = {
