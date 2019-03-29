@@ -21,6 +21,7 @@ def is_ownership_relation(g, triple):
         sbolNS + 'functionalComponent',
         sbolNS + 'sequenceConstraint',
         sbolNS + 'location',
+        sbolNS + 'sourceLocation',
         sbolNS + 'sequenceAnnotation',
         sbolNS + 'measure'
     }
