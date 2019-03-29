@@ -58,4 +58,5 @@ for file in files:
     for e in r['errors']:
         if "Namespace" in e:
             continue
-        print('⚠️  ' + e)
+        if len(e.strip()) > 0:
+            print('⚠️  ' + e)
