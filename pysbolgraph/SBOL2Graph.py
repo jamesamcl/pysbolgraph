@@ -45,7 +45,7 @@ class SBOL2Graph:
     def load_fasta(self, file, uri_prefix):
         fasta_obj = SeqIO.parse(file, "fasta")
         for record in fasta_obj:
-            self.create_sequence(uri_prefix, record.id, record.seq, "")
+            self.create_sequence(uri_prefix, record.id, record.seq, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 
     @property
     def component_definitions(self):
