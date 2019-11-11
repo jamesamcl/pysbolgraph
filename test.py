@@ -3,6 +3,7 @@ from pysbolgraph.SBOL2Graph import SBOL2Graph
 from pysbolgraph.terms import Biopax, SBOL2
 from glob import glob
 import json
+import os
 import requests
 
 
@@ -11,6 +12,11 @@ def load(f):
     s = file.read()
     file.close()
     return s
+
+
+def mkdir_p_and_open(filename):
+    os.makedirs(filename.rpartition('/')[0], exist_ok=True)
+    return open(filename, "wb+")
 
 
 files = glob('SBOLTestSuite/SBOL2/*.xml')
@@ -22,7 +28,7 @@ for file in files:
 
     new_filename = "out/" + file
 
-    f = open(new_filename, "wb+")
+    f = mkdir_p_and_open(new_filename)
     f.write(g.serialize_xml())
     f.close()
 
