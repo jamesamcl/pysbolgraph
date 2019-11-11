@@ -35,7 +35,7 @@ def is_ownership_relation(g, triple):
     # SequenceAnnotation).
     #
     if predicate == sbolNS + 'component':
-        if (triple[0], RDF.type, URIRef(sbolNS + 'SequenceAnnotation')) in g.g:
+        if (triple[0], RDF.type, URIRef(sbolNS + 'SequenceAnnotation')) in g:
             return False
         else:
             return True
@@ -45,7 +45,7 @@ def is_ownership_relation(g, triple):
 
 def ns_prefix_dict(g):
     """Return a dictionary of namespace, uri prefix pairs."""
-    return {ns: prefix.toPython() for (ns, prefix) in g.g.namespaces()}
+    return {ns: prefix.toPython() for (ns, prefix) in g.namespaces()}
 
 
 def serialize_sboll2(g):
