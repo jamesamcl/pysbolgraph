@@ -8,6 +8,7 @@ from rdflib import URIRef, Literal
 rdfNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 sbolNS = "http://sbols.org/v2#"
 
+
 def is_ownership_relation(g, triple):
     subject = triple[0].toPython()
     predicate = triple[1].toPython()
@@ -41,8 +42,14 @@ def is_ownership_relation(g, triple):
 
     return False
 
+
+def ns_prefix_dict(g):
+    """Return a dictionary of namespace, uri prefix pairs."""
+    return {ns: prefix.toPython() for (ns, prefix) in g.g.namespaces()}
+
+
 def serialize_sboll2(g):
-    prefixes = dict()
+    prefixes = ns_prefix_dict(g)
     prefixes['rdf'] = rdfNS
     prefixes['sbol'] = sbolNS
 
