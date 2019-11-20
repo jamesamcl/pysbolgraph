@@ -33,31 +33,27 @@ from .S2Measure import S2Measure
 from .SBOL2Serialize import serialize_sboll2
 
 
-class SBOL2Graph:
+class SBOL2Graph(rdflib.Graph):
     def __init__(self):
-        self.g = rdflib.Graph()
-
-    def load(self, url):
-        self.g.load(url)
+        super(SBOL2Graph, self).__init__()
 
     @property
     def component_definitions(self):
-        return [S2ComponentDefinition(self.g, triple[0]) for triple in
-                self.g.triples((None, RDF.type, SBOL2.ComponentDefinition))]
+        return [S2ComponentDefinition(self, triple[0]) for triple in
+                self.triples((None, RDF.type, SBOL2.ComponentDefinition))]
 
     @property
     def module_definitions(self):
-        return [S2ModuleDefinition(self.g, triple[0]) for triple in
-                self.g.triples((None, RDF.type, SBOL2.ModuleDefinition))]
-
+        return [S2ModuleDefinition(self, triple[0]) for triple in
+                self.triples((None, RDF.type, SBOL2.ModuleDefinition))]
 
     @property
     def sequences(self):
-        return [S2Sequence(self.g, triple[0]) for triple in
-                self.g.triples((None, RDF.type, SBOL2.Sequence))]
+        return [S2Sequence(self, triple[0]) for triple in
+                self.triples((None, RDF.type, SBOL2.Sequence))]
 
     def get_type(self, uri):
-        triples = self.g.triples(uri, RDF.type, None)
+        triples = self.triples(uri, RDF.type, None)
         if len(triples) > 0:
             return triples[0][2].toPython()
         else:
@@ -100,24 +96,15 @@ class SBOL2Graph:
             n = n + 1
 
             # TODO!!!!
-            if len(list(self.g.triples((uri, None, None)))) > 0:
+            if len(list(self.triples((uri, None, None)))) > 0:
                 continue
 
             return uri
 
-    def triples(self, pattern):
-        return self.g.triples(pattern)
-
-    def remove(self, pattern):
-        self.g.remove(pattern)
-
-    def add(self, triple):
-        self.g.add(triple)
-
     def insert_properties(self, uri, properties):
         for predicate in properties:
             obj = properties[predicate]
-            self.g.add((URIRef(uri), URIRef(predicate), obj))
+            self.add((URIRef(uri), URIRef(predicate), obj))
 
     def uri_to_facade(self, uri):
         the_type = self.get_type(uri)
