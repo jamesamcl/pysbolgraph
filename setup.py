@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='pysbolgraph',
-      version='0.1.0',
+      version='0.2.0',
       description='A simple Python library to read and write SBOL files',
       long_description=long_description,
       long_description_content_type="text/markdown",
