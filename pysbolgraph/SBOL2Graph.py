@@ -1,6 +1,7 @@
 import rdflib
 import requests
 import json
+from Bio import SeqIO
 
 from rdflib import URIRef
 
@@ -36,6 +37,12 @@ from .SBOL2Serialize import serialize_sboll2
 class SBOL2Graph(rdflib.Graph):
     def __init__(self):
         super(SBOL2Graph, self).__init__()
+
+    #TODO: Load from URL or from file
+    def load_fasta(self, file, uri_prefix):
+        fasta_obj = SeqIO.parse(file, "fasta")
+        for record in fasta_obj:
+            self.create_sequence(uri_prefix, record.id, record.seq, "http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html")
 
     @property
     def component_definitions(self):
